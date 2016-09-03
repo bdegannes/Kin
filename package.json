@@ -1,0 +1,62 @@
+{
+  "name": "Kin",
+  "version": "1.0.0",
+  "description": "Family app",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.config.js --progress --inline --colors --hot",
+    "server": "nodemon server/server.js",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bdegannes/kin.git"
+  },
+  "keywords": [
+    "react",
+    "redux"
+  ],
+  "author": "Blaine Degannes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bdegannes/kin/issues"
+  },
+  "homepage": "https://github.com/bdegannes/kin#readme",
+  "devDependencies": {
+    "autoprefixer": "^6.3.4",
+    "autoprefixer-core": "^6.0.1",
+    "babel-cli": "^6.14.0",
+    "babel-core": "~6.13.2",
+    "babel-eslint": "~6.0.4",
+    "babel-loader": "~6.2.5",
+    "babel-plugin-react-transform": "~2.0.2",
+    "babel-preset-es2015": "~6.1.4",
+    "babel-preset-react": "~6.1.4",
+    "babel-preset-stage-0": "~6.5.0",
+    "body-parser": "^1.15.2",
+    "css-loader": "^0.23.1",
+    "express": "^4.13.4",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
+    "morgan": "^1.7.0",
+    "node-sass": "^3.8.0",
+    "path": "^0.12.7",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "axios": "^0.9.1",
+    "material-ui": "^0.15.4",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "react-hot-loader": "^1.3.0",
+    "react-redux": "^4.4.1",
+    "react-router": "^2.0.1",
+    "react-tap-event-plugin": "^1.0.0",
+    "redux": "^3.3.1",
+    "redux-logger": "^2.6.1",
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.0.1"
+  }
+}
