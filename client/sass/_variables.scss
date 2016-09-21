@@ -1,0 +1,34 @@
+/*
+ * Colors
+ * ========================================================================== */
+/* Background */
+$bg-color-purple: #512DA8;
+$bg-color-green: #00796B;
+$bg-color-blue: #303F9F;
+$bg-color-turqouise: #0097A7;
+/* Logo */
+$logo-color-primary: #ffffff;
+$logo-color-secondary: #000000;
+/* Accent */
+$accent-color-teal: #68EFAD;
+$accent-color-mustard: #FFC107;
+$accent-color-orange: #FF5722;
+$accent-color-red: #FF5252;
+/*
+ * Typography
+ * ========================================================================== */
+$font-family-base: 'Roboto', sans-serif;
+$font-family-secondary: 'Open Sans', sans-serif;
+/*
+ * Mobile First Method
+ * ===========================================================================*/
+/* Custom, iPhone Retina */
+$bp-phone-xs: 320px;
+/* Extra Small Devices, Phones */
+$bp-phone-sm: 480px;
+/* Small Devices, Tablets */
+$bp-tablet-sm: 768px;
+/* Medium Devices, Desktops */
+$bp-screen-md: 992px;
+/* Large Devices, Wide Screens */
+$bp-screen-lg: 1200px;

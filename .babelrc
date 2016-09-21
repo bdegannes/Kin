@@ -4,5 +4,5 @@
     "stage-0",
     "react"
   ],
-  "plugins": ["transform-react-jsx"]
+  "plugins": ["transform-react-jsx", "transform-decorators-legacy"]
 }

@@ -1,0 +1,16 @@
+@import 'variables';
+
+.infoBlock {
+  width: 100%;
+  margin-top: 20px;
+
+  .info {
+    width: 82%;
+    margin: 0 auto;
+
+    .infoText {
+      display: block;
+      color: $logo-color-primary;
+    }
+  }
+}

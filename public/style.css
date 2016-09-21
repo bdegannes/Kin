@@ -1,0 +1,139 @@
+/*
+ * Colors
+ * ========================================================================== */
+
+/* Background */
+
+/* Logo */
+
+/* Accent */
+
+/*
+ * Typography
+ * ========================================================================== */
+
+/*
+ * Mobile First Method
+ * ===========================================================================*/
+
+/* Custom, iPhone Retina */
+
+/* Extra Small Devices, Phones */
+
+/* Small Devices, Tablets */
+
+/* Medium Devices, Desktops */
+
+/* Large Devices, Wide Screens */
+
+.client-components-Logo-___LogoStyle__logo___1qUlm {
+  width: 600px;
+  margin: 30px auto;
+}
+
+.client-components-Logo-___LogoStyle__logo___1qUlm svg {
+  fill: #ffffff;
+}
+
+@media (min-width: 992px) {
+  .client-components-Logo-___LogoStyle__logo___1qUlm {
+    width: 300px;
+  }
+}
+
+.client-components-Header-___HeaderStyles__nav___3LoXt {
+  background-color: transparent;
+  border: none;
+}
+
+.client-components-Header-___HeaderStyles__nav___3LoXt .client-components-Header-___HeaderStyles__navHeader___Xqpc9 {
+  width: 100%;
+}
+
+.client-components-Icons-___IconStyles__iconInfo___5rAjC {
+  display: inline-block;
+  position: relative;
+  left: 48%;
+}
+
+/*
+ * Colors
+ * ========================================================================== */
+
+/* Background */
+
+/* Logo */
+
+/* Accent */
+
+/*
+ * Typography
+ * ========================================================================== */
+
+/*
+ * Mobile First Method
+ * ===========================================================================*/
+
+/* Custom, iPhone Retina */
+
+/* Extra Small Devices, Phones */
+
+/* Small Devices, Tablets */
+
+/* Medium Devices, Desktops */
+
+/* Large Devices, Wide Screens */
+
+.client-components-Info-___InfoStyle__infoBlock___7psn3 {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.client-components-Info-___InfoStyle__infoBlock___7psn3 .client-components-Info-___InfoStyle__info___2mnuE {
+  width: 82%;
+  margin: 0 auto;
+}
+
+.client-components-Info-___InfoStyle__infoBlock___7psn3 .client-components-Info-___InfoStyle__info___2mnuE .client-components-Info-___InfoStyle__infoText___2U_VY {
+  display: block;
+  color: #ffffff;
+}
+
+/*
+ * Colors
+ * ========================================================================== */
+
+/* Background */
+
+/* Logo */
+
+/* Accent */
+
+/*
+ * Typography
+ * ========================================================================== */
+
+/*
+ * Mobile First Method
+ * ===========================================================================*/
+
+/* Custom, iPhone Retina */
+
+/* Extra Small Devices, Phones */
+
+/* Small Devices, Tablets */
+
+/* Medium Devices, Desktops */
+
+/* Large Devices, Wide Screens */
+
+body {
+  background-color: #512DA8;
+}
+
+body .client-sass-___LoginPage__mainContainer___18coH {
+  height: auto;
+}
+
+
+/*# sourceMappingURL=style.css.map*/

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import Date from './Selector/date'
+import LoginPage from './LoginPage'
+import FamilyForm from './Forms/FamilyForm'
 
 const App = (props) => (
   <div>
-    <Date />
+    <FamilyForm />
   </div>
 )
 

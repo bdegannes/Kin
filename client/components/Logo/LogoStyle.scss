@@ -1,0 +1,15 @@
+@import 'variables';
+
+.logo {
+  width: 70%;
+  margin: 30px auto;
+
+  svg {
+    fill: $logo-color-primary;
+  }
+}
+@media (min-width: $bp-screen-md) {
+  .logo {
+    width: 300px;
+  }
+}
