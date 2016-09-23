@@ -4,8 +4,9 @@ import DateSelector from '../DateSelector/Date'
 import Toggle from '../Buttons/ToggleButton'
 import ForwardButton from '../Buttons/ForwardButton'
 import Button from '../Buttons/Button'
+import { Col } from 'react-bootstrap'
 import CSSModules from 'react-css-modules'
-import styles from './FamilyFormStyles.scss'
+import styles from './FormStyles.scss'
 
 const styleMUI = {
   focus: {
@@ -24,7 +25,7 @@ const styleMUI = {
 class FamilyForm extends Component {
   render() {
     return (
-      <div styleName='familyform'>
+      <Col styleName='familyform' xs={12} md={4} mdOffset={4}>
         <InputField
           fieldStyle={styleMUI.fieldStyle}
           label='GIVEN NAME'
@@ -49,9 +50,9 @@ class FamilyForm extends Component {
           type='text'
           lineStyle={styleMUI.focus}
           typeStyle={styleMUI.inputStyle}
-          labelFocusStyle={styleMUI.focus}/>/>
+          labelFocusStyle={styleMUI.focus} />
         <ForwardButton />
-      </div>
+      </Col>
     )
   }
 }

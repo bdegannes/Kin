@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import DateMonth from '../Selectors/DateMonth'
 import DateDay from '../Selectors/DateDay'
 import DateYear from '../Selectors/DateYear'
