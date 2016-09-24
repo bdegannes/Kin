@@ -13,20 +13,14 @@ const styleMUI = {
 
 const animate = (x) => {
   return {
-    WebkitTransform: `translate3d(${x}px, 0, 0)`,
-    transform: `translate3d(${x}px, 0, 0)`,
+    WebkitTransform: `translate3d(0, ${x}px, 0) scaleX(0.7) scaleY(0.7)`,
+    transform: `translate3d(0, ${x}px, 0) scaleX(0.7) scaleY(0.7)`,
   }
 }
-{/* <InfoIcon
-  hover={styleMUI.focus.color}
-  onClick={this.handleClick}
-  style={animate(x)}
-/> */}
 
 class Information extends Component {
   constructor(props){
     super(props)
-
     this.state = { infoBlockOpen: false }
   }
 
@@ -40,21 +34,17 @@ class Information extends Component {
     return (
       <div>
         <div styleName='infoBlock'>
-          <Motion
-            style={{x: spring(this.state.infoBlockOpen ? -155 : 0, {stiffness: 145, damping: 23 })}} >
-            {({x}) =>
-              <InfoIcon
-                hover={styleMUI.focus.color}
-                onClick={this.handleClick}
-                animate={animate(x)} />
-            }
-          </Motion>
-            <div className={styles.info}>
-              <p className={styles.infoText}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultrices ante fringilla
-                tortor laoreet, vel tincidunt arcu facilisis. Suspendisse vel nulla fermentum, imperdiet mi mattis, lacinia tortor.
-              </p>
-            </div>
+          <InfoIcon
+            hover={styleMUI.focus.color}
+            onClick={this.handleClick}
+            animate={animate(x)} />
+          }
+          {/* <div className={styles.info}>
+            <p className={styles.infoText}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultrices ante fringilla
+            tortor laoreet, vel tincidunt arcu facilisis. Suspendisse vel nulla fermentum, imperdiet mi mattis, lacinia tortor.
+            </p>
+          </div> */}
         </div>
       </div>
     )

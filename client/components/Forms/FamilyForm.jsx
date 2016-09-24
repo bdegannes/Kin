@@ -15,43 +15,49 @@ const styleMUI = {
   },
   fieldStyle: {
     width: '320px',
-    margin: '30px 0'
+    margin: '0'
   },
   inputStyle: {
-    color: 'fff'
+    color: 'white'
   }
 }
 
 class FamilyForm extends Component {
   render() {
     return (
-      <Col styleName='familyform' xs={12} md={4} mdOffset={4}>
-        <InputField
-          fieldStyle={styleMUI.fieldStyle}
-          label='GIVEN NAME'
-          type='text'
-          lineStyle={styleMUI.focus}
-          typeStyle={styleMUI.inputStyle}
-          labelFocusStyle={styleMUI.focus} />
-        <InputField
-          fieldStyle={styleMUI.fieldStyle}
-          label='FAMILY NAME'
-          type='text'
-          lineStyle={styleMUI.focus}
-          typeStyle={styleMUI.inputStyle}
-          labelFocusStyle={styleMUI.focus}/>
-        <label> BIRTH
-          <DateSelector />
-        </label>
-        <Toggle />
-        <InputField
-          fieldStyle={styleMUI.fieldStyle}
-          label='MAIDEN NAME'
-          type='text'
-          lineStyle={styleMUI.focus}
-          typeStyle={styleMUI.inputStyle}
-          labelFocusStyle={styleMUI.focus} />
-        <ForwardButton />
+      <Col xs={12} md={4} mdOffset={4}>
+        <div styleName='familyform' >
+          <p> PLEASE ENTER YOUR: </p>
+          <InputField
+            fieldStyle={styleMUI.fieldStyle}
+            label='GIVEN NAME'
+            type='text'
+            lineStyle={styleMUI.focus}
+            typeStyle={styleMUI.inputStyle}
+            labelFocusStyle={styleMUI.focus} />
+          <InputField
+            fieldStyle={styleMUI.fieldStyle}
+            label='FAMILY NAME'
+            type='text'
+            lineStyle={styleMUI.focus}
+            typeStyle={styleMUI.inputStyle}
+            labelFocusStyle={styleMUI.focus}/>
+          <label styleName='label'> BIRTH
+            <DateSelector />
+          </label>
+          <Toggle
+            gender='MALE'
+            label='FEMALE'
+            position='right'/>
+          <InputField
+            fieldStyle={styleMUI.fieldStyle}
+            label='MAIDEN NAME'
+            type='text'
+            lineStyle={styleMUI.focus}
+            typeStyle={styleMUI.inputStyle}
+            labelFocusStyle={styleMUI.focus} />
+          <ForwardButton />
+        </div>
       </Col>
     )
   }

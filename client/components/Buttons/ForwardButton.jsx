@@ -5,8 +5,8 @@ import NavigationForward from 'material-ui/svg-icons/navigation/arrow-forward';
 
 const Forward = () => (
   <MuiThemeProvider>
-    <FloatingActionButton>
-      <NavigationForward/>
+    <FloatingActionButton mini={true}>
+      <NavigationForward />
     </FloatingActionButton>
   </MuiThemeProvider>
 )

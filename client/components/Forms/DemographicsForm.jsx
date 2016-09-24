@@ -5,7 +5,7 @@ import InputField from '../Field/InputField'
 import ForwardButton from '../Buttons/ForwardButton'
 import CSSModules from 'react-css-modules'
 import { Col } from 'react-bootstrap'
-import styles from './Forms/FormStyles.scss'
+import styles from './FormStyles.scss'
 
 class Demographics extends Component {
   render () {

@@ -12,6 +12,7 @@ import promiseMiddleware from 'redux-promise'
 import rootReducer from './reducers/combine_reducer_index'
 import LoginPage from './components/LoginPage'
 import FamilyForm from './components/Forms/FamilyForm'
+import Demographics from './components/Forms/DemographicsForm'
 import Layout from './components/Layout'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -23,9 +24,11 @@ injectTapEventPlugin();
 const App = () => (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/personal" component={Layout} >
+      <Route path="/" component={Layout} >
         <IndexRoute component={LoginPage}/>
-        <Route path="/" component={FamilyForm} />
+        <Route path="personal" component={FamilyForm} >
+          <Route path="personal/demo" component={Demographics} />
+        </Route>
       </Route>
     </Router>
   </Provider>

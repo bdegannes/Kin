@@ -1,7 +1,12 @@
+@import "variables";
+
 .nav {
   background-color: transparent;
   border: none;
+
   .navHeader {
     width: 100%;
+    margin: 0;
   }
 }
+@media (min-width: $bp-screen-md) {}
