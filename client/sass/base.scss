@@ -1,4 +1,15 @@
-@import "./_variables.scss";
-html {
-  background-color: $bg-color-purple;
+@import "variables";
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-smoothing: grayscale;
+  font-family: $font-family-base;
+
+  .container {
+    background-color: inherit;
+  }
 }

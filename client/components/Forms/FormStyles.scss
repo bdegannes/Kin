@@ -2,10 +2,10 @@
 
 .familyform {
   display: block;
-  width: 92%;
+  width: 100%;
   margin: 0 auto;
 
-  p {
+  h5 {
     color: white;
   }
 
@@ -14,5 +14,12 @@
     color: $accent-color-teal;
     margin: 30px 0;
     font-size: $font-size-h6;
+  }
+}
+
+.demographics {
+  h5 {
+    color: white;
+    margin: 0 0 25px;
   }
 }

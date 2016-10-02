@@ -13,7 +13,7 @@ import rootReducer from './reducers/combine_reducer_index'
 import LoginPage from './components/LoginPage'
 import FamilyForm from './components/Forms/FamilyForm'
 import Demographics from './components/Forms/DemographicsForm'
-import Layout from './components/Layout'
+import App from './components/App'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 const loggerMiddleware = createLogger();
@@ -21,17 +21,18 @@ const store = applyMiddleware(promiseMiddleware, loggerMiddleware)(createStore)(
 
 injectTapEventPlugin();
 
-const App = () => (
+const Kin = () => (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={Layout} >
+      <Route path="/" component={App} >
         <IndexRoute component={LoginPage}/>
-        <Route path="personal" component={FamilyForm} >
-          <Route path="personal/demo" component={Demographics} />
+        <Route path="personal" >
+          <IndexRoute component={FamilyForm} />
+          <Route path=":demographics" component={Demographics} />
         </Route>
       </Route>
     </Router>
   </Provider>
 )
 
-ReactDOM.render(<App />, document.querySelector('.main-container'));
+ReactDOM.render(<Kin />, document.querySelector('.main-container'));

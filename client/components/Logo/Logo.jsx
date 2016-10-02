@@ -3,15 +3,14 @@ import CSSModules from 'react-css-modules'
 import classNames from 'classnames/bind'
 import styles from './LogoStyle.scss'
 
-let cx = classNames.bind(styles);
+let names = classNames.bind(styles);
 
 class KinLogo extends Component {
   render () {
-    let logo = cx({
+    let logo = names({
       logoSm: this.props.location.pathname !== '/',
       logoLg: this.props.location.pathname === '/'
     })
-    console.log(logo);
     return (
       <div className={logo} >
         <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 334.65 197.04">

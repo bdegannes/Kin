@@ -4,7 +4,6 @@ import InputField from './Field/InputField'
 import About from './Info/Info'
 import Button from "./Buttons/Button"
 import { Link } from "react-router"
-
 import CSSModules from 'react-css-modules'
 import styles from '../sass/LoginPage.scss'
 import { Col } from 'react-bootstrap'
@@ -43,14 +42,15 @@ class LoginPage extends Component{
             inputStyle={styleMUI.inputStyle}
           />
           <div styleName='button'>
-            <Button
-              label='ENTER'
-              backgroundColor='#512DA8'
-              labelColor='white'
-              style={styleMUI.button}
-            >
-              <Link to="/personal">Personal</Link>
-            </Button>
+            <Link to="/personal">
+              <Button
+                label='ENTER'
+                backgroundColor='#512DA8'
+                labelColor='white'
+                style={styleMUI.button}
+              >
+              </Button>
+            </Link>
           </div>
           <About />
         </Col>

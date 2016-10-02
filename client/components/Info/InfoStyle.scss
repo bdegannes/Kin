@@ -4,13 +4,21 @@
   width: 100%;
   margin-top: 20px;
 
-  .info {
-    width: 100%;
+  .infoTextBlock {
     text-align: center;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    overflow: hidden;
+    position: relative;
 
     .infoText {
-      display: block;
       color: $logo-color-primary;
+      bottom: 0;
+      height: 0;
+      margin: 0;
+      box-sizing: border-box;
+      position: relative;
     }
   }
 }

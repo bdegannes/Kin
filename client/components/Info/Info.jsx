@@ -3,7 +3,8 @@ import InfoIcon from '../Icons/InfoIcon'
 
 import CSSModules from 'react-css-modules'
 import styles from './InfoStyle.scss'
-import { Motion, spring } from 'react-motion'
+import GSAP from 'react-gsap-enhancer'
+import { TweenMax, TimelineMax } from 'gsap'
 
 const styleMUI = {
   focus: {
@@ -11,13 +12,17 @@ const styleMUI = {
   }
 }
 
-const animate = (x) => {
-  return {
-    WebkitTransform: `translate3d(0, ${x}px, 0) scaleX(0.7) scaleY(0.7)`,
-    transform: `translate3d(0, ${x}px, 0) scaleX(0.7) scaleY(0.7)`,
-  }
+const animate = ({ target }) => {
+  const icon = target.findInChildren({name: 'info'})
+  const block = target.findInChildren({styleName: 'infoTextBlock'})
+
+  let tl = new TimelineMax();
+  tl.to(icon, 0.4, { y: '-80px', scale: 0.6, ease:Sine.easeOut })
+    .to(block, 0.4, { height: '120px', borderBottom: '2px solid #68EFAD', ease:Power0.easeNone}, '-=0.2')
+  return tl
 }
 
+@GSAP()
 class Information extends Component {
   constructor(props){
     super(props)
@@ -25,28 +30,34 @@ class Information extends Component {
   }
 
   handleClick = (event) => {
-    // handle opening and closing of info box
     event.preventDefault()
     this.setState({ infoBlockOpen: !this.state.infoBlockOpen })
+    this.move()
+  }
+
+  move = () => {
+   if(!this.state.infoBlockOpen){
+     this.switchAnim = this.addAnimation(animate)
+   } else {
+     this.switchAnim.reverse()
+   }
   }
 
   render() {
     return (
-      <div>
         <div styleName='infoBlock'>
           <InfoIcon
+            name='info'
             hover={styleMUI.focus.color}
             onClick={this.handleClick}
-            animate={animate(x)} />
-          }
-          {/* <div className={styles.info}>
-            <p className={styles.infoText}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultrices ante fringilla
-            tortor laoreet, vel tincidunt arcu facilisis. Suspendisse vel nulla fermentum, imperdiet mi mattis, lacinia tortor.
+          />
+          <div styleName='infoTextBlock'>
+            <p styleName='infoText'>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultrices ante fringilla
+              tortor laoreet, vel tincidunt arcu facilisis. Suspendisse vel nulla fermentum, imperdiet mi mattis, lacinia tortor.
             </p>
-          </div> */}
+          </div>
         </div>
-      </div>
     )
   }
 }

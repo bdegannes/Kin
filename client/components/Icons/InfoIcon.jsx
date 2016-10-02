@@ -19,7 +19,7 @@ class InfoIcon extends Component {
   }
   render() {
     return (
-      <div styleName='iconInfo' style={this.props.animate}>
+      <div key="info" styleName='iconInfo' style={this.props.animate}>
         <MuiThemeProvider>
           <Info
             style={iconStyles}
