@@ -22,7 +22,11 @@ export default class DateSelectorDay extends Component {
     this.state = {value: 1}
   }
 
-  handleChange = (event, key, value) => this.setState({value})
+  handleChange = (event, key, value) => {
+    this.setState({value}, function () {
+      this.props.onChange(value)
+    })
+  }
 
   render () {
     return (

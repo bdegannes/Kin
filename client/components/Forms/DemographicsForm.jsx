@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
+import { Link } from "react-router"
+import CSSModules from 'react-css-modules'
+import { Col } from 'react-bootstrap'
 import Location from '../Selectors/States'
 import Toggle from '../Buttons/ToggleButton'
 import InputField from '../Field/InputField'
 import ForwardButton from '../Buttons/ForwardButton'
-import { Link } from "react-router"
-import CSSModules from 'react-css-modules'
-import { Col } from 'react-bootstrap'
 import styles from './FormStyles.scss'
 
 class Demographics extends Component {

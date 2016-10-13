@@ -1,8 +1,21 @@
-import React, { Component } from 'react';
-import TextField from 'material-ui/TextField';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import React, { Component, PropTypes } from 'react'
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import TextField from 'material-ui/TextField'
+
 import CSSModules from 'react-css-modules'
 import styles from './Input.scss'
+
+const propTypes ={
+  value: PropTypes.string,
+  hint: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  lineStyle: PropTypes.object,
+  labelFocusStyle: PropTypes.object,
+  typeStyle: PropTypes.object,
+  fieldStyle: PropTypes.object,
+}
 
 const styleMUI = {
   labelStyle: {
@@ -17,16 +30,13 @@ class InputField extends Component {
   constructor ( props ) {
     super(props)
     this.state = {
-      value: '',
       dirty: false,
       error_text: ''
     }
   }
 
   handleChange = ( event, value) => {
-    this.setState({ value }, function () {
-      this.props.onChange(this.state.value)
-    })
+    this.props.onChange(event.target)
   }
 
   isDirty = () => {
@@ -40,19 +50,21 @@ class InputField extends Component {
   }
 
   render() {
+    const { value, type, hint } = this.props
     return (
       <div styleName='inputField'>
         <MuiThemeProvider>
           <TextField
-            floatingLabelText={this.props.label}
-            type={this.props.type}
-            hintText={this.props.hint}
+            type={type}
+            hintText={hint}
+            name={this.props.label}
             onChange={this.handleChange}
+            style={this.props.fieldStyle}
+            inputStyle={this.props.typeStyle}
+            floatingLabelText={this.props.label}
             floatingLabelStyle={styleMUI.labelStyle}
             underlineFocusStyle={this.props.lineStyle}
             floatingLabelFocusStyle={this.props.labelFocusStyle}
-            inputStyle={this.props.typeStyle}
-            style={this.props.fieldStyle}
             onBlur={this.isDirty}
             errorText={this.state.error_text}
             errorStyle={styleMUI.error} />
@@ -61,5 +73,7 @@ class InputField extends Component {
     )
   }
 }
+
+InputField.propTypes = propTypes
 
 export default CSSModules(InputField, styles)

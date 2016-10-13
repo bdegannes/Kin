@@ -11,8 +11,7 @@ import { createStore, applyMiddleware } from 'redux'
 import promiseMiddleware from 'redux-promise'
 import rootReducer from './reducers/combine_reducer_index'
 import LoginPage from './components/LoginPage'
-import FamilyForm from './components/Forms/FamilyForm'
-import Demographics from './components/Forms/DemographicsForm'
+import SignUp from './components/SignUp'
 import App from './components/App'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -27,8 +26,7 @@ const Kin = () => (
       <Route path="/" component={App} >
         <IndexRoute component={LoginPage}/>
         <Route path="personal" >
-          <IndexRoute component={FamilyForm} />
-          <Route path=":demographics" component={Demographics} />
+          <IndexRoute component={SignUp} />
         </Route>
       </Route>
     </Router>

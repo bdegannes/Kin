@@ -17,7 +17,7 @@ const setYear = () => {
 }
 
 const year = setYear().map((item) => (
-  <MenuItem key={item.value} value={item.value} primaryText={item.year} />
+  <MenuItem key={item.year} value={item.value} primaryText={item.year} />
 ))
 
 export default class DateSelectorYear extends Component{
@@ -26,7 +26,12 @@ export default class DateSelectorYear extends Component{
     this.state = {value: 1}
   }
 
-  handleChange = (event, key, value) => this.setState({value})
+  handleChange = (event, key, value) => {
+    const date = event.target.innerText;
+    this.setState({value}, function () {
+      this.props.onChange(date)
+    })
+  }
 
   render () {
     return (

@@ -6,7 +6,6 @@ import Button from "./Buttons/Button"
 import { Link } from "react-router"
 import CSSModules from 'react-css-modules'
 import styles from '../sass/LoginPage.scss'
-import { Col } from 'react-bootstrap'
 
 // When styling Material UI Components create a styles object for inline styles
 const styleMUI = {
@@ -31,29 +30,27 @@ class LoginPage extends Component{
   render () {
     return (
       <div>
-        <Col xs={12} md={4} mdOffset={4} styleName='mainContainer'>
-          <InputField
-            fieldStyle={styleMUI.fieldStyle}
-            label='ENTER YOU KIN ID'
-            type='text'
-            lineStyle={styleMUI.focus}
-            typeStyle={styleMUI.inputStyle}
-            labelFocusStyle={styleMUI.focus}
-            inputStyle={styleMUI.inputStyle}
-          />
-          <div styleName='button'>
-            <Link to="/personal">
-              <Button
-                label='ENTER'
-                backgroundColor='#512DA8'
-                labelColor='white'
-                style={styleMUI.button}
-              >
-              </Button>
-            </Link>
-          </div>
-          <About />
-        </Col>
+        <InputField
+          fieldStyle={styleMUI.fieldStyle}
+          label='ENTER YOU KIN ID'
+          type='text'
+          lineStyle={styleMUI.focus}
+          typeStyle={styleMUI.inputStyle}
+          labelFocusStyle={styleMUI.focus}
+          inputStyle={styleMUI.inputStyle}
+        />
+        <div styleName='button'>
+          <Link to="/personal">
+            <Button
+              label='ENTER'
+              backgroundColor='#512DA8'
+              labelColor='white'
+              style={styleMUI.button}
+            >
+            </Button>
+          </Link>
+        </div>
+        <About />
       </div>
     )
   }

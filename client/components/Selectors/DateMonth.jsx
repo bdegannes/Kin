@@ -29,7 +29,12 @@ export default class DateSelectorMonth extends React.Component {
    this.state = {value: 1};
  }
 
-  handleChange = (event, index, value) => this.setState({value})
+
+  handleChange = (event, key, value) => {
+    this.setState({value}, function () {
+      this.props.onChange(months[key].month)
+    })
+  }
 
   render () {
     return (
