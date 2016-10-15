@@ -26,16 +26,16 @@ class Demographics extends Component {
     this.setState({ married: bool })
   }
 
-  handleInput = (val) => {
-    this.setState({ children: val })
+  handleInput = (target) => {
+    this.setState({ children: target.value })
   }
 
   handleClick = () => {
+    this.props.onChange(this.state)
   }
 
   render () {
     return (
-      <Col xs={12} md={4} mdOffset={4}>
         <div styleName='demographics'>
           <h5>PLEASE MAKE A SELECTION:</h5>
           <Location
@@ -60,7 +60,6 @@ class Demographics extends Component {
             onClick={this.handleClick} />
           {/* </Link> */}
         </div>
-      </Col>
     )
   }
 }
