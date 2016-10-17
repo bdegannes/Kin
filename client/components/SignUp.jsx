@@ -96,7 +96,7 @@ class SignUp extends Component {
   handleParentInfo = (name, label, value) => {
     if(name === 'mother_info' || name === 'father_info'){
 
-      if(!info.hasOwnProperty('parent')){
+      if(!info.hasOwnProperty('parents')){
         info.parents = [{},{}]
       }
 
