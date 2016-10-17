@@ -54,11 +54,9 @@ class Demographics extends Component {
             fieldStyle={styleMUI.fieldStyle}
             typeStyle={styleMUI.inputStyle}
             onChange={this.handleInput} />
-          {/* <Link to='`/personal/${next}`'> */}
           <ForwardButton
             style={styleMUI.forward}
             onClick={this.handleClick} />
-          {/* </Link> */}
         </div>
     )
   }

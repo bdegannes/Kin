@@ -3,6 +3,7 @@ import InputField from '../Field/InputField'
 import DateSelector from '../DateSelector/Date'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+
 import CSSModules from 'react-css-modules'
 import styles from './FormStyles.scss'
 import GSAP from 'react-gsap-enhancer'
@@ -27,16 +28,13 @@ class FamilyForm extends Component {
     super(props)
     this.state = {
       hasMaidenName: false,
-      given_name: '',
-      family_name: '',
-      maiden_name: '',
-      birth: '',
-      gender: ''
     }
   }
 
   handleRadioSelect = (event, value) => {
-    this.setState({gender: value})
+    // this.setState({gender: value})
+    this.props.onChange(this.props.name, event.target.name, value)
+
     if(value === 'female') {
       this.setState({ hasMaidenName: true });
       this.move()
@@ -45,23 +43,24 @@ class FamilyForm extends Component {
 
   handleChangeInput = (e) => {
     var inputName = e.name.replace(' ', '_').toLowerCase();
-    if( this.state.hasOwnProperty(inputName) ){
-      this.setState({[inputName]: e.value})
-    }
+    this.props.onChange(this.props.name, inputName, e.value)
+    // if( this.state.hasOwnProperty(inputName) ){
+    //   this.setState({[inputName]: e.value})
+    // }
   }
 
   handleChangeBirth = (date) => {
-    this.setState({birth: date})
-    console.log(this.state);
+    // this.setState({birth: date})
+    this.props.onChange(this.props.name, 'birth', date)
   }
 
   move () {
     this.setAnimation = this.addAnimation(animate)
   }
 
+
   render() {
     console.log(this.props);
-
     const { heading, ...other } = this.props
 
     return (

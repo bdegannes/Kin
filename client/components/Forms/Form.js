@@ -4,11 +4,14 @@ const propTypes = {
   value: PropTypes.object
 }
 
-const Form = (props) => (
-  <form >
-    {props.children}
-  </form>
-)
+const Form = (props) => {
+
+    return (
+      <form >
+        {props.children}
+      </form>
+    )
+  }
 
 Form.propTypes = propTypes
 
