@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import DropDownMenu from 'material-ui/DropDownMenu';
+import React from 'react'
+import DropDownMenu from 'material-ui/DropDownMenu'
 import MenuItem from 'material-ui/MenuItem'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
@@ -15,20 +15,19 @@ const months = [
   {value: 9, month: 'September'},
   {value: 10, month: 'October'},
   {value: 11, month: 'November'},
-  {value: 12, month: 'December'},
+  {value: 12, month: 'December'}
 ]
 
 const dropDownMonths = months.map((item) => {
-  const shortMonth = item.month.substring(0, 3);
-  return(<MenuItem key={item.value} value={item.value} primaryText={shortMonth} />)
+  const shortMonth = item.month.substring(0, 3)
+  return (<MenuItem key={item.value} value={item.value} primaryText={shortMonth} />)
 })
 
 export default class DateSelectorMonth extends React.Component {
-  constructor(props) {
-   super(props);
-   this.state = {value: 1};
- }
-
+  constructor (props) {
+    super(props)
+    this.state = {value: 1}
+  }
 
   handleChange = (event, key, value) => {
     this.setState({value}, function () {

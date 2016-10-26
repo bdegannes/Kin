@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import DropDownMenu from 'material-ui/DropDownMenu';
+import React, { Component } from 'react'
+import DropDownMenu from 'material-ui/DropDownMenu'
 import MenuItem from 'material-ui/MenuItem'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-const days = [];
-for(let i=1; i<=31; i++){
+const days = []
+for (let i = 1; i <= 31; i++) {
   days.push({value: i, day: i})
 }
 
@@ -17,7 +17,7 @@ const day = days.map((item) => (
 ))
 
 export default class DateSelectorDay extends Component {
-  constructor(props){
+  constructor (props) {
     super(props)
     this.state = {value: 1}
   }

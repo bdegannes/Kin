@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from "react-router"
 import CSSModules from 'react-css-modules'
-import { Col } from 'react-bootstrap'
 import Location from '../Selectors/States'
 import Toggle from '../Buttons/ToggleButton'
 import InputField from '../Field/InputField'
@@ -36,28 +34,28 @@ class Demographics extends Component {
 
   render () {
     return (
-        <div styleName='demographics'>
-          <h5>PLEASE MAKE A SELECTION:</h5>
-          <Location
-            label='LOCATION:'
-            underline={{border: 'none'}}
-            onChange={this.handleLocation}/>
-          <Toggle
-            label='MARRIED:'
-            position='left'
-            toggleStyle={styleMUI.toggle}
-            onChange={this.handleToggle} />
-          <InputField
-            label='CHILDREN'
-            type='number'
-            hint='NUMBER'
-            fieldStyle={styleMUI.fieldStyle}
-            typeStyle={styleMUI.inputStyle}
-            onChange={this.handleInput} />
-          <ForwardButton
-            style={styleMUI.forward}
-            onClick={this.handleClick} />
-        </div>
+      <div styleName='demographics'>
+        <h5>PLEASE MAKE A SELECTION:</h5>
+        <Location
+          label='LOCATION:'
+          underline={{border: 'none'}}
+          onChange={this.handleLocation} />
+        <Toggle
+          label='MARRIED:'
+          position='left'
+          toggleStyle={styleMUI.toggle}
+          onChange={this.handleToggle} />
+        <InputField
+          label='CHILDREN'
+          type='number'
+          hint='NUMBER'
+          fieldStyle={styleMUI.fieldStyle}
+          typeStyle={styleMUI.inputStyle}
+          onChange={this.handleInput} />
+        <ForwardButton
+          style={styleMUI.forward}
+          onClick={this.handleClick} />
+      </div>
     )
   }
 }

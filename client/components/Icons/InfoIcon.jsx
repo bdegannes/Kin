@@ -10,16 +10,16 @@ props : hover=ColorString
 
 const iconStyles = {
   height: 48,
-  width: 48,
+  width: 48
 }
 
 class InfoIcon extends Component {
   handleClick = (event) => {
     this.props.onClick(event)
   }
-  render() {
+  render () {
     return (
-      <div key="info" styleName='iconInfo' style={this.props.animate}>
+      <div key='info' styleName='iconInfo' style={this.props.animate}>
         <MuiThemeProvider>
           <Info
             style={iconStyles}
@@ -32,6 +32,5 @@ class InfoIcon extends Component {
     )
   }
 }
-
 
 export default CSSModules(InfoIcon, styles)

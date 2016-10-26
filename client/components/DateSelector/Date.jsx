@@ -6,7 +6,7 @@ import DateYear from '../Selectors/DateYear'
 import CSSModules from 'react-css-modules'
 import styles from './DateSelectorStyle.scss'
 
-const $accentMustard = '#FFC107';
+const $accentMustard = '#FFC107'
 const styleMUI = {
   underline: {
     borderTop: 'none'
@@ -21,7 +21,7 @@ const styleMUI = {
 // TODO: Styles for Birth component
 class DateDropDown extends Component {
   constructor (props) {
-    super (props)
+    super(props)
     this.state = {
       month: '',
       day: '',
@@ -50,7 +50,7 @@ class DateDropDown extends Component {
     return date
   }
 
-  render() {
+  render () {
     return (
       <div styleName='dateSelector'>
         <DateMonth dropDownStyle={styleMUI} onChange={this.setMonth} />

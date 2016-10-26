@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton'
 
 const Radio = (props) => (
   <MuiThemeProvider>

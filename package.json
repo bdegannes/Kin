@@ -4,7 +4,7 @@
   "description": "Family app",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js --progress --inline --colors --hot --history-api-fallback" ,
+    "start": "webpack-dev-server --config webpack.config.js --progress --inline --colors --hot --history-api-fallback",
     "server": "nodemon server/server.js",
     "build": "webpack"
   },
@@ -22,12 +22,15 @@
     "url": "https://github.com/bdegannes/kin/issues"
   },
   "homepage": "https://github.com/bdegannes/kin#readme",
+  "standard": {
+    "parser": "babel-eslint"
+  },
   "devDependencies": {
     "autoprefixer": "^6.3.4",
     "autoprefixer-core": "^6.0.1",
     "babel-cli": "^6.14.0",
     "babel-core": "~6.13.2",
-    "babel-eslint": "~6.0.4",
+    "babel-eslint": "^6.0.5",
     "babel-loader": "~6.2.5",
     "babel-plugin-react-transform": "~2.0.2",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
@@ -48,6 +51,7 @@
     "resolve-url-loader": "^1.6.0",
     "sass-loader": "^4.0.1",
     "source-map-loader": "^0.1.5",
+    "standard": "^8.5.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.14",
@@ -56,6 +60,7 @@
   "dependencies": {
     "axios": "^0.9.1",
     "classnames": "^2.2.5",
+    "eslint": "^3.8.1",
     "gsap": "^1.19.0",
     "history": "^4.2.0",
     "material-ui": "^0.15.4",

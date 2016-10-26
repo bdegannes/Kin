@@ -1,11 +1,10 @@
-import React, { Component, propTypes } from 'react'
+import React, { Component } from 'react'
 import Form from './Forms/Form'
 import Demographics from './Forms/DemographicsForm'
 import Partial from './Forms/FamilyForm'
 import BackButton from './Buttons/BackButton'
 import ForwardButton from './Buttons/ForwardButton'
 import SubmitButton from './Buttons/Button.jsx'
-import Link from "react-router/lib/Link"
 
 const styleMUI = {
   forward: {
@@ -19,17 +18,7 @@ class SignUp extends Component {
   constructor () {
     super()
     this.state = {
-      given_name: '',
-      family_name: '',
-      maiden_name: '',
-      location: '',
-      married: '',
-      birth: '',
-      gender: '',
       numOfChildren: 0,
-      spouse: {},
-      children: [],
-      parents: [],
       formStateSet: false,
       formState: [],
       step: 0
@@ -38,85 +27,77 @@ class SignUp extends Component {
 
   componentWillMount () {
     this.setState({
-      formState: [<Demographics onChange={this.handleDemoClickNext}/>]
+      formState: [<Demographics onChange={this.handleDemoClickNext} />]
     })
   }
 
-  handleDemoClickNext = (c) => {
+  handleDemoClickNext = (content) => {
     this.setState({
-      location: c.locale,
-      married: c.married,
-      numOfChildren: +c.children
+      numOfChildren: +content.children
     }, function () {
-      info.married = c.married
-      info.location = c.locale
+      info.married = content.married
+      info.location = content.locale
 
-      if(!this.state.formStateSet){
+      if (!this.state.formStateSet) {
         this.formState()
-        this.setState({formStateSet: true})
+        this.setState({ formStateSet: true })
       }
       this.nextStep()
     })
   }
 
   handlePersonalInfo = (name, label, value) => {
-    if (name === 'personal_info'){
+    if (name === 'personal_info') {
       info[label] = value
-      console.log(info)
     }
   }
 
   handleSpouseInfo = (name, label, value) => {
     if (name === 'spouse_info') {
-      if(!info.hasOwnProperty('spouse')){
+      if (!info.hasOwnProperty('spouse')) {
         info.spouse = {}
       }
       info.spouse[label] = value
-      console.log(info)
     }
-
   }
 
   handleChildrenInfo = (name, label, value) => {
     const child = name.split('_')
     const idx = +child[1] - 1
-    if(child[0] === "child"){
-      if(!info.hasOwnProperty('children')){
+    if (child[0] === 'child') {
+      if (!info.hasOwnProperty('children')) {
         info.children = []
       }
-      if(typeof info.children[idx] !== 'object'){
+      if (typeof info.children[idx] !== 'object') {
         info.children[idx] = {}
       }
 
-      info.children[idx][label] = value;
-      console.log(info);
+      info.children[idx][label] = value
     }
   }
 
   handleParentInfo = (name, label, value) => {
-    if(name === 'mother_info' || name === 'father_info'){
-
-      if(!info.hasOwnProperty('parents')){
-        info.parents = [{},{}]
+    if (name === 'mother_info' || name === 'father_info') {
+      if (!info.hasOwnProperty('parents')) {
+        info.parents = [{}, {}]
       }
 
-      switch (name){
+      switch (name) {
         case 'mother_info':
-          info.parents[0][label] = value;
-          break;
+          info.parents[0][label] = value
+          break
         case 'father_info':
-          info.parents[1][label] = value;
-          break;
+          info.parents[1][label] = value
+          break
         default:
-          break;
+          break
       }
-      console.log(info);
     }
   }
 
   nextStep = () => {
     let next = this.state.step
-    if(this.state.step !== this.state.formState.length){
+    if (this.state.step !== this.state.formState.length) {
       next += 1
     }
     this.setState({step: next})
@@ -124,7 +105,7 @@ class SignUp extends Component {
 
   previousStep = () => {
     let prev = this.state.step
-    if(this.state.step > 0) {
+    if (this.state.step > 0) {
       prev -= 1
     }
     this.setState({step: prev})
@@ -143,15 +124,15 @@ class SignUp extends Component {
     // Add form for each child
     if (this.state.numOfChildren) {
       const children = []
-      for(let i = 0; i < this.state.numOfChildren; i++){
-        const name = `child_${i+1}_info`;
+      for (let i = 0; i < this.state.numOfChildren; i++) {
+        const name = `child_${i + 1}_info`
         children.push(<Partial name={name} heading={`PLEASE ENTER YOUR ${name} INFO:`} onChange={this.handleChildrenInfo} />)
       }
       nextformState.push(children)
     }
 
     // Add parents form
-    const parents = [<Partial key='1' name='mother_info' heading='PLEASE ENTER YOUR MOTHER INFO:' onChange={this.handleParentInfo} />,<Partial key='2' name='father_info' heading='PLEASE ENTER YOUR FATHER INFO:' onChange={this.handleParentInfo} />]
+    const parents = [<Partial key='1' name='mother_info' heading='PLEASE ENTER YOUR MOTHER INFO:' onChange={this.handleParentInfo} />, <Partial key='2' name='father_info' heading='PLEASE ENTER YOUR FATHER INFO:' onChange={this.handleParentInfo} />]
 
     nextformState.push(parents)
 
@@ -160,30 +141,41 @@ class SignUp extends Component {
     })
   }
 
+  navButtons = () => {
+    const { formState, step } = this.state
+    const formLength = formState.length - 1
+
+    if (step) {
+      return (
+        <div>
+          <BackButton
+            onClick={this.previousStep} />
+          {step < formLength && (
+            <ForwardButton
+              onClick={this.nextStep}
+              style={styleMUI.forward} />
+          )}
+          {step === formLength && (
+            <SubmitButton
+              label='Submit'
+              style={styleMUI.forward} />
+          )}
+        </div>
+      )
+    }
+  }
+
   render () {
     const { formState, step } = this.state
-    const navButtons = (() => {
-      const stateBtns = <div><BackButton onClick={this.previousStep} /><ForwardButton onClick={this.nextStep} /></div>
-      const submitBtns = <SubmitButton label='Submit'/>
+    console.log(this.props)
 
-      if(this.state.step){
-        if(this.state.step === this.state.formState.length-1){
-          return submitBtns
-        }
-        return stateBtns
-      }
-    })()
-
-    console.log(this.props);
     return (
-      <Form  {...this.props} >
+      <Form {...this.props} >
         {formState[step]}
-        {navButtons}
+        {this.navButtons()}
       </Form>
     )
   }
 }
-
-// SignUp.childContextTypes = childContextTypes;
 
 export default SignUp

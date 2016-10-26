@@ -1,10 +1,10 @@
-import * as c from '../actions/constants';
+import * as c from '../actions/constants'
 
 const intialState = {
   values: {}
-};
+}
 
-export default function(state = intialState, action) {
+export default function (state = intialState, action) {
   switch (action.type) {
 
     case c.FORM_UPDATE_VALUE:
@@ -12,11 +12,10 @@ export default function(state = intialState, action) {
         values: Object.assign({}, state.values, {
           [action.name]: action.value
         })
-      });
-      break;
+      })
 
     default:
-      return state;
+      return state
 
   }
 };

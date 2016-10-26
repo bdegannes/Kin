@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField'
 import CSSModules from 'react-css-modules'
 import styles from './Input.scss'
 
-const propTypes ={
+const propTypes = {
   value: PropTypes.string,
   hint: PropTypes.string,
   type: PropTypes.string.isRequired,
@@ -14,7 +14,7 @@ const propTypes ={
   lineStyle: PropTypes.object,
   labelFocusStyle: PropTypes.object,
   typeStyle: PropTypes.object,
-  fieldStyle: PropTypes.object,
+  fieldStyle: PropTypes.object
 }
 
 const styleMUI = {
@@ -27,7 +27,7 @@ const styleMUI = {
 }
 
 class InputField extends Component {
-  constructor ( props ) {
+  constructor (props) {
     super(props)
     this.state = {
       dirty: false,
@@ -35,13 +35,13 @@ class InputField extends Component {
     }
   }
 
-  handleChange = ( event, value) => {
+  handleChange = (event, value) => {
     this.props.onChange(event.target)
   }
 
   isDirty = () => {
     this.setState({dirty: true}, function () {
-      if(this.state.dirty && this.state.value === ''){
+      if (this.state.dirty && this.state.value === '') {
         this.setState({error_text: 'This field cannot be left empty!'})
       } else {
         this.setState({error_text: ''})
@@ -49,8 +49,8 @@ class InputField extends Component {
     })
   }
 
-  render() {
-    const { value, type, hint } = this.props
+  render () {
+    const { type, hint } = this.props
     return (
       <div styleName='inputField'>
         <MuiThemeProvider>

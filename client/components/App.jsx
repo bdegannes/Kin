@@ -1,4 +1,4 @@
-import React, { Component} from 'react'
+import React from 'react'
 import Header from './Header/Header'
 
 import { Col } from 'react-bootstrap'
@@ -7,7 +7,7 @@ import styles from '../sass/base.scss'
 
 const App = (props) => (
   <div styleName='container'>
-    <Header {...props} styles={null}/>
+    <Header {...props} styles={null} />
     <Col xs={12} md={4} mdOffset={4} styleName='mainContainer'>
       {props.children}
     </Col>

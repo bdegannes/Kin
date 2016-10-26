@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import Toggle from 'material-ui/Toggle';
+import Toggle from 'material-ui/Toggle'
 
 class ToggleSwitch extends Component {
-  constructor (props) {
-    super(props)
-  }
+
   handleChange = (event, state) => {
     this.props.onChange(state)
   }
@@ -26,7 +24,6 @@ class ToggleSwitch extends Component {
     )
   }
 }
-
 
 const styleMUI = {
   label: {

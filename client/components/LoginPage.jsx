@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import Header from './Header/Header'
+import React, { Component } from 'react'
 import InputField from './Field/InputField'
 import About from './Info/Info'
-import Button from "./Buttons/Button"
-import { Link } from "react-router"
+import Button from './Buttons/Button'
+import { Link } from 'react-router'
 import CSSModules from 'react-css-modules'
 import styles from '../sass/LoginPage.scss'
 
@@ -20,13 +19,13 @@ const styleMUI = {
   inputStyle: {
     color: 'white'
   },
-  button:{
+  button: {
     display: 'inline-block',
     border: '1px solid #68EFAD'
   }
 }
 
-class LoginPage extends Component{
+class LoginPage extends Component {
   render () {
     return (
       <div>
@@ -40,14 +39,13 @@ class LoginPage extends Component{
           inputStyle={styleMUI.inputStyle}
         />
         <div styleName='button'>
-          <Link to="/personal">
+          <Link to='/personal'>
             <Button
               label='ENTER'
               backgroundColor='#512DA8'
               labelColor='white'
               style={styleMUI.button}
-            >
-            </Button>
+            />
           </Link>
         </div>
         <About />
