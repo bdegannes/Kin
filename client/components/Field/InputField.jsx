@@ -31,7 +31,7 @@ class InputField extends Component {
     super(props)
     this.state = {
       dirty: false,
-      error_text: ''
+      errorText: ''
     }
   }
 
@@ -40,33 +40,37 @@ class InputField extends Component {
   }
 
   isDirty = () => {
+    const { dirty } = this.state
+    const { value } = this.props
     this.setState({dirty: true}, function () {
-      if (this.state.dirty && this.state.value === '') {
-        this.setState({error_text: 'This field cannot be left empty!'})
+      if (dirty && value === '') {
+        this.setState({errorText: 'This field cannot be left empty!'})
       } else {
-        this.setState({error_text: ''})
+        this.setState({errorText: ''})
       }
     })
   }
 
   render () {
-    const { type, hint } = this.props
+    const { value, type, hint, lineStyle, labelFocusStyle, label, typeStyle, fieldStyle } = this.props
+    const { errorText } = this.state
     return (
       <div styleName='inputField'>
         <MuiThemeProvider>
           <TextField
             type={type}
             hintText={hint}
-            name={this.props.label}
+            name={label}
+            value={value}
             onChange={this.handleChange}
-            style={this.props.fieldStyle}
-            inputStyle={this.props.typeStyle}
-            floatingLabelText={this.props.label}
+            style={fieldStyle}
+            inputStyle={typeStyle}
+            floatingLabelText={label}
             floatingLabelStyle={styleMUI.labelStyle}
-            underlineFocusStyle={this.props.lineStyle}
-            floatingLabelFocusStyle={this.props.labelFocusStyle}
+            underlineFocusStyle={lineStyle}
+            floatingLabelFocusStyle={labelFocusStyle}
             onBlur={this.isDirty}
-            errorText={this.state.error_text}
+            errorText={errorText}
             errorStyle={styleMUI.error} />
         </MuiThemeProvider>
       </div>

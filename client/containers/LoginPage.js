@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-import InputField from './Field/InputField'
-import About from './Info/Info'
-import Button from './Buttons/Button'
 import { Link } from 'react-router'
+
+import Form from '../components/Forms/Form'
+import InputField from '../components/Field/InputField'
+import About from '../components/Info/Info'
+import Button from '../components/Buttons/Button'
+
 import CSSModules from 'react-css-modules'
 import styles from '../sass/LoginPage.scss'
 
@@ -26,18 +29,36 @@ const styleMUI = {
 }
 
 class LoginPage extends Component {
+  constructor (props) {
+    super(props)
+    this.state = { kinId: '' }
+  }
+
+  handleChange = (target) => {
+    this.setState({ kinId: target.value })
+  }
+
+  handleSubmit = () => {
+    this.props.validate(this.state)
+  }
+
   render () {
+    const { kinId } = this.state
     return (
       <div>
-        <InputField
-          fieldStyle={styleMUI.fieldStyle}
-          label='ENTER YOU KIN ID'
-          type='text'
-          lineStyle={styleMUI.focus}
-          typeStyle={styleMUI.inputStyle}
-          labelFocusStyle={styleMUI.focus}
-          inputStyle={styleMUI.inputStyle}
-        />
+        <Form>
+          <InputField
+            fieldStyle={styleMUI.fieldStyle}
+            label='ENTER YOU KIN ID'
+            type='text'
+            value={kinId}
+            lineStyle={styleMUI.focus}
+            typeStyle={styleMUI.inputStyle}
+            labelFocusStyle={styleMUI.focus}
+            inputStyle={styleMUI.inputStyle}
+            onChange={this.handleChange}
+          />
+        </Form>
         <div styleName='button'>
           <Link to='/personal'>
             <Button
@@ -45,6 +66,7 @@ class LoginPage extends Component {
               backgroundColor='#512DA8'
               labelColor='white'
               style={styleMUI.button}
+              onSubmit={this.handleSubmit}
             />
           </Link>
         </div>

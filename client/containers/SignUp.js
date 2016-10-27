@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
-import Form from './Forms/Form'
-import Demographics from './Forms/DemographicsForm'
-import Partial from './Forms/FamilyForm'
-import BackButton from './Buttons/BackButton'
-import ForwardButton from './Buttons/ForwardButton'
-import SubmitButton from './Buttons/Button.jsx'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as FormActions from '../actions/form.actions.js'
+
+import Form from '../components/Forms/Form'
+import Demographics from '../components/Forms/DemographicsForm'
+import Partial from '../components/Forms/FamilyForm'
+import BackButton from '../components/Buttons/BackButton'
+import ForwardButton from '../components/Buttons/ForwardButton'
+import SubmitButton from '../components/Buttons/Button.jsx'
 
 const styleMUI = {
   forward: {
@@ -42,7 +46,9 @@ class SignUp extends Component {
         this.formState()
         this.setState({ formStateSet: true })
       }
+
       this.nextStep()
+      this.props.updateDemographics(info)
     })
   }
 
@@ -158,11 +164,15 @@ class SignUp extends Component {
           {step === formLength && (
             <SubmitButton
               label='Submit'
-              style={styleMUI.forward} />
+              style={styleMUI.forward}
+              onSubmit={this.handleSubmit} />
           )}
         </div>
       )
     }
+  }
+
+  handleSubmit = () => {
   }
 
   render () {
@@ -178,4 +188,7 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp
+const mapStateToProps = ({memberFormData}) => memberFormData
+const mapDispatchToProps = (dispatch) => bindActionCreators(FormActions, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

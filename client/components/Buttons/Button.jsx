@@ -10,6 +10,7 @@ const Button = (props) => (
       href={props.href}
       labelColor={props.labelColor}
       style={props.style}
+      onClick={props.onSubmit}
     />
   </MuiThemeProvider>
 )

@@ -8,7 +8,7 @@ const propTypes = {
 
 const Form = (props) => {
   return (
-    <form >
+    <form>
       {props.children}
     </form>
   )

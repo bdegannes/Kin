@@ -4,10 +4,10 @@ const intialState = {
   values: {}
 }
 
-export default function (state = intialState, action) {
+export default (state = intialState, action) => {
   switch (action.type) {
 
-    case c.FORM_UPDATE_VALUE:
+    case c.VALIDATE_KIN_ID:
       return Object.assign({}, state, {
         values: Object.assign({}, state.values, {
           [action.name]: action.value
@@ -18,4 +18,4 @@ export default function (state = intialState, action) {
       return state
 
   }
-};
+}
