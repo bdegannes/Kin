@@ -3,4 +3,17 @@
 .label {
   color: white;
   font-size: $font-size-label;
+  margin-bottom: 0;
+}
+.location{
+  width: 100%;
+  position: relative;
+  line-height: 56px;
+}
+
+.states{
+  float: right !important;
+  svg{
+    right: -4px !important;
+  }
 }

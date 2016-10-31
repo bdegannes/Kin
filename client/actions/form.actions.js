@@ -1,28 +1,30 @@
 import * as c from './constants'
 
-export const updateDemographics = (data) => {
-  return {
-    type: c.FORM_UPDATE_DEMOGRAPHICS,
-    data
-  }
-}
+export const updateDemographics = (payload) => ({
+  type: c.FORM_UPDATE_DEMOGRAPHICS,
+  payload
+})
 
-export const updatePersonal = (data) => ({
+export const updatePersonal = (payload) => ({
   type: c.FORM_UPDATE_PERSONAL,
-  data
+  payload
 })
 
-export const updateSpouse = (data) => ({
+export const updateSpouse = (payload) => ({
   type: c.FORM_UPDATE_SPOUSE,
-  data
+  payload
 })
 
-export const updateChildren = (data) => ({
+export const updateChildren = (payload) => ({
   type: c.FORM_UPDATE_CHILDREN,
-  data
+  payload
 })
 
-export const updateParent = (data) => ({
+export const updateParent = (payload) => ({
   type: c.FORM_UPDATE_PARENT,
-  data
+  payload
+})
+
+export const submitForm = () => ({
+  type: c.FORM_SUBMIT
 })

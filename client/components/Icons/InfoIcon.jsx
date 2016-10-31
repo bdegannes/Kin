@@ -1,12 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Info from 'material-ui/svg-icons/action/info-outline'
 import CSSModules from 'react-css-modules'
 import styles from './IconStyles.scss'
 
-/*
-props : hover=ColorString
-*/
+const propTypes = {
+  onClick: PropTypes.func.isRequired,
+  hover: PropTypes.string,
+  animate: PropTypes.func
+}
 
 const iconStyles = {
   height: 48,
@@ -25,12 +27,13 @@ class InfoIcon extends Component {
             style={iconStyles}
             hoverColor={this.props.hover}
             color='white'
-            onClick={this.handleClick}
-          />
+            onClick={this.handleClick} />
         </MuiThemeProvider>
       </div>
     )
   }
 }
+
+InfoIcon.propTypes = propTypes
 
 export default CSSModules(InfoIcon, styles)

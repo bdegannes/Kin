@@ -1,7 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import DropDownMenu from 'material-ui/DropDownMenu'
 import MenuItem from 'material-ui/MenuItem'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+
+const propTypes = {
+  onChange: PropTypes.func.isRequired,
+  dropDownStyle: PropTypes.object
+}
 
 const setYear = () => {
   const maxYear = new Date().getFullYear()
@@ -20,7 +25,7 @@ const year = setYear().map((item) => (
   <MenuItem key={item.year} value={item.value} primaryText={item.year} />
 ))
 
-export default class DateSelectorYear extends Component {
+class DateSelectorYear extends Component {
   constructor (props) {
     super(props)
     this.state = {value: 1}
@@ -41,11 +46,14 @@ export default class DateSelectorYear extends Component {
           onChange={this.handleChange}
           underlineStyle={this.props.dropDownStyle.underline}
           iconStyle={this.props.dropDownStyle.icon}
-          labelStyle={this.props.dropDownStyle.label}
-        >
+          labelStyle={this.props.dropDownStyle.label} >
           {year}
         </DropDownMenu>
       </MuiThemeProvider>
     )
   }
 }
+
+DateSelectorYear.propTypes = propTypes
+
+export default DateSelectorYear

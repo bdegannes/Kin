@@ -1,9 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Toggle from 'material-ui/Toggle'
 
-class ToggleSwitch extends Component {
+const propTypes = {
+  onChange: PropTypes.func.isRequired,
+  label: PropTypes.string,
+  labelPosition: PropTypes.string,
+  style: PropTypes.object
+}
 
+class ToggleSwitch extends Component {
   handleChange = (event, state) => {
     this.props.onChange(state)
   }
@@ -31,4 +37,7 @@ const styleMUI = {
     fontSize: '16px'
   }
 }
+
+ToggleSwitch.propTypes = propTypes
+
 export default ToggleSwitch

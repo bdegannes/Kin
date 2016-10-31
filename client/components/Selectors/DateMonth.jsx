@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import DropDownMenu from 'material-ui/DropDownMenu'
 import MenuItem from 'material-ui/MenuItem'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+
+const propTypes = {
+  onChange: PropTypes.func.isRequired,
+  dropDownStyle: PropTypes.object
+}
 
 const months = [
   {value: 1, month: 'January'},
@@ -23,7 +28,7 @@ const dropDownMonths = months.map((item) => {
   return (<MenuItem key={item.value} value={item.value} primaryText={shortMonth} />)
 })
 
-export default class DateSelectorMonth extends React.Component {
+class DateSelectorMonth extends React.Component {
   constructor (props) {
     super(props)
     this.state = {value: 1}
@@ -43,11 +48,14 @@ export default class DateSelectorMonth extends React.Component {
           onChange={this.handleChange}
           underlineStyle={this.props.dropDownStyle.underline}
           iconStyle={this.props.dropDownStyle.icon}
-          labelStyle={this.props.dropDownStyle.label}
-        >
+          labelStyle={this.props.dropDownStyle.label} >
           {dropDownMonths}
         </DropDownMenu>
       </MuiThemeProvider>
     )
   }
 }
+
+DateSelectorMonth.propTypes = propTypes
+
+export default DateSelectorMonth

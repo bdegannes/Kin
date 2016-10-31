@@ -8,7 +8,9 @@ import CSSModules from 'react-css-modules'
 import styles from './FormStyles.scss'
 
 const propTypes = {
-  heading: PropTypes.string
+  heading: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  name: PropTypes.string
 }
 
 class FamilyForm extends Component {
@@ -36,9 +38,7 @@ class FamilyForm extends Component {
   }
 
   render () {
-    console.log(this.props)
     const { heading } = this.props
-
     return (
       <div styleName='familyform' >
         <h5> {heading} </h5>

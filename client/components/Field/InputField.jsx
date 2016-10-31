@@ -14,7 +14,8 @@ const propTypes = {
   lineStyle: PropTypes.object,
   labelFocusStyle: PropTypes.object,
   typeStyle: PropTypes.object,
-  fieldStyle: PropTypes.object
+  fieldStyle: PropTypes.object,
+  onChange: PropTypes.func.isRequired
 }
 
 const styleMUI = {
@@ -52,7 +53,7 @@ class InputField extends Component {
   }
 
   render () {
-    const { value, type, hint, lineStyle, labelFocusStyle, label, typeStyle, fieldStyle } = this.props
+    const { type, hint, lineStyle, labelFocusStyle, label, typeStyle, fieldStyle } = this.props
     const { errorText } = this.state
     return (
       <div styleName='inputField'>
@@ -61,7 +62,6 @@ class InputField extends Component {
             type={type}
             hintText={hint}
             name={label}
-            value={value}
             onChange={this.handleChange}
             style={fieldStyle}
             inputStyle={typeStyle}

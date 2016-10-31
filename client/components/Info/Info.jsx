@@ -51,8 +51,7 @@ class Information extends Component {
         <InfoIcon
           name='info'
           hover={styleMUI.focus.color}
-          onClick={this.handleClick}
-        />
+          onClick={this.handleClick} />
         <div styleName='infoTextBlock'>
           <p styleName='infoText'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultrices ante fringilla

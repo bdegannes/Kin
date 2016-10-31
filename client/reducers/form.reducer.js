@@ -1,47 +1,32 @@
 import * as c from '../actions/constants'
+import * as util from './utils'
 
-const intialState = {}
+const intialState = {
+  personal: {},
+  spouse: util.noop,
+  children: util.noop,
+  parents: {}
+}
 
 export default (state = intialState, action) => {
   switch (action.type) {
 
     case c.FORM_UPDATE_DEMOGRAPHICS:
-      const { location, married } = action.data
-      return Object.assign({}, state, {
-        location: location,
-        married: married
-      })
+      return Object.assign({}, state, {personal: action.payload})
 
     case c.FORM_UPDATE_PERSONAL:
-      const { given_name, family_name, birth, gender, maiden_name } = action.data
-      return Object.assign({}, state, {
-        given_name: given_name,
-        family_name: family_name,
-        birth: birth,
-        gender: gender,
-        maiden_name: maiden_name
-      })
+      const { personal } = state
+      let personalInfo = Object.assign({}, personal, action.payload)
+      return Object.assign({}, state, {personal: personalInfo})
 
     case c.FORM_UPDATE_SPOUSE:
-      return Object.assign({}, state, {
-        values: Object.assign({}, state.values, {
-          [action.name]: action.value
-        })
-      })
+      return Object.assign({}, state, {spouse: action.payload})
 
     case c.FORM_UPDATE_CHILDREN:
-      return Object.assign({}, state, {
-        values: Object.assign({}, state.values, {
-          [action.name]: action.value
-        })
-      })
+      return Object.assign({}, state, {children: action.payload})
 
     case c.FORM_UPDATE_PARENT:
-      return Object.assign({}, state, {
-        values: Object.assign({}, state.values, {
-          [action.name]: action.value
-        })
-      })
+      return Object.assign({}, state, {parents: action.payload})
 
     default:
       return state

@@ -1,7 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import NavigationForward from 'material-ui/svg-icons/navigation/arrow-forward'
+
+const propTypes = {
+  onClick: PropTypes.func.isRequired,
+  style: PropTypes.object
+}
 
 class Forward extends Component {
   handleClick = () => {
@@ -21,5 +26,7 @@ class Forward extends Component {
     )
   }
 }
+
+Forward.propTypes = propTypes
 
 export default Forward

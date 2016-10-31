@@ -22,6 +22,7 @@ class SignUp extends Component {
   constructor () {
     super()
     this.state = {
+      married: false,
       numOfChildren: 0,
       formStateSet: false,
       formState: [],
@@ -36,19 +37,22 @@ class SignUp extends Component {
   }
 
   handleDemoClickNext = (content) => {
+    const demographics = {}
     this.setState({
+      married: content.married,
       numOfChildren: +content.children
     }, function () {
-      info.married = content.married
-      info.location = content.locale
+      demographics.married = content.married
+      demographics.location = content.locale
+      demographics.numOfChildren = this.state.numOfChildren
+
+      this.props.updateDemographics(demographics)
 
       if (!this.state.formStateSet) {
         this.formState()
         this.setState({ formStateSet: true })
       }
-
       this.nextStep()
-      this.props.updateDemographics(info)
     })
   }
 
@@ -56,6 +60,7 @@ class SignUp extends Component {
     if (name === 'personal_info') {
       info[label] = value
     }
+    this.props.updatePersonal(info)
   }
 
   handleSpouseInfo = (name, label, value) => {
@@ -65,6 +70,7 @@ class SignUp extends Component {
       }
       info.spouse[label] = value
     }
+    this.props.updateSpouse(info.spouse)
   }
 
   handleChildrenInfo = (name, label, value) => {
@@ -72,7 +78,7 @@ class SignUp extends Component {
     const idx = +child[1] - 1
     if (child[0] === 'child') {
       if (!info.hasOwnProperty('children')) {
-        info.children = []
+        info.children = {}
       }
       if (typeof info.children[idx] !== 'object') {
         info.children[idx] = {}
@@ -80,25 +86,27 @@ class SignUp extends Component {
 
       info.children[idx][label] = value
     }
+    this.props.updateChildren(info.children)
   }
 
   handleParentInfo = (name, label, value) => {
     if (name === 'mother_info' || name === 'father_info') {
       if (!info.hasOwnProperty('parents')) {
-        info.parents = [{}, {}]
+        info.parents = { mother: {}, father: {} }
       }
 
       switch (name) {
         case 'mother_info':
-          info.parents[0][label] = value
+          info.parents.mother[label] = value
           break
         case 'father_info':
-          info.parents[1][label] = value
+          info.parents.father[label] = value
           break
         default:
           break
       }
     }
+    this.props.updateParent(info.parents)
   }
 
   nextStep = () => {
@@ -118,21 +126,23 @@ class SignUp extends Component {
   }
 
   formState = () => {
-    let nextformState = this.state.formState
+    const { formState, married, numOfChildren } = this.state
+    let nextformState = formState
+
     // personal info form partial
     nextformState.push(<Partial name='personal_info' heading='PLEASE ENTER YOUR INFO:' onChange={this.handlePersonalInfo} />)
 
     // Add spouse form if married
-    if (this.state.married) {
+    if (married) {
       nextformState.push(<Partial name='spouse_info' heading='PLEASE ENTER YOUR SPOUSE INFO:' onChange={this.handleSpouseInfo} />)
     }
 
     // Add form for each child
-    if (this.state.numOfChildren) {
+    if (numOfChildren) {
       const children = []
-      for (let i = 0; i < this.state.numOfChildren; i++) {
+      for (let i = 0; i < numOfChildren; i++) {
         const name = `child_${i + 1}_info`
-        children.push(<Partial name={name} heading={`PLEASE ENTER YOUR ${name} INFO:`} onChange={this.handleChildrenInfo} />)
+        children.push(<Partial key={i} name={name} heading={`PLEASE ENTER YOUR ${name} INFO:`} onChange={this.handleChildrenInfo} />)
       }
       nextformState.push(children)
     }
@@ -177,8 +187,6 @@ class SignUp extends Component {
 
   render () {
     const { formState, step } = this.state
-    console.log(this.props)
-
     return (
       <Form {...this.props} >
         {formState[step]}

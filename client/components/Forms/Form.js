@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react'
 // TODO: Add validations for form elements
 
 const propTypes = {
-  value: PropTypes.object
+  children: PropTypes.node.isRequired
 }
 
 const Form = (props) => {

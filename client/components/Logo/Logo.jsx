@@ -1,7 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import classNames from 'classnames/bind'
 import styles from './LogoStyle.scss'
+
+const propTypes = {
+  location: PropTypes.object.isRequired
+}
 
 let names = classNames.bind(styles)
 
@@ -23,5 +27,7 @@ class KinLogo extends Component {
     )
   }
 }
+
+KinLogo.propTypes = propTypes
 
 export default CSSModules(KinLogo, styles)

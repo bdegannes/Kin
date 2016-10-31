@@ -62,7 +62,8 @@ class Demographics extends Component {
 
 const styleMUI = {
   forward: {
-    float: 'right'
+    float: 'right',
+    marginTop: '15px'
   },
   fieldStyle: {
     width: '100%',

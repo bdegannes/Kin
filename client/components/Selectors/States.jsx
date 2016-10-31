@@ -1,9 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import DropDownMenu from 'material-ui/DropDownMenu'
 import MenuItem from 'material-ui/MenuItem'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import CSSModules from 'react-css-modules'
 import styles from './Selectors.scss'
+
+const propTypes = {
+  onChange: PropTypes.func.isRequired,
+  underline: PropTypes.object,
+  label: PropTypes.string
+}
 
 const allStates = 'Alabama_Alaska_Arizona_Arkansas_California_Colorado_Connecticut_Delaware_Florida_Georgia_Hawaii_Idaho_Illinois_Indiana_Iowa_Kansas_Kentucky_Louisiana_Maine_Maryland_Massachusetts_Michigan_Minnesota_Mississippi_Missouri_Montana Nebraska_Nevada_New Hampshire_New Jersey_New Mexico_New York_North Carolina_North Dakota_Ohio_Oklahoma_Oregon_Pennsylvania_Rhode Island_South Carolina_South Dakota_Tennessee_Texas_Utah_Vermont_Virginia_Washington_West Virginia_Wisconsin_Wyoming'.split('_')
 
@@ -43,22 +49,25 @@ class LocationSelector extends Component {
 
   render () {
     return (
-      <div>
+      <div styleName='location'>
         <label styleName='label'>
           {this.props.label}
-          <MuiThemeProvider>
-            <DropDownMenu
-              value={this.state.value}
-              onChange={this.handleChange}
-              underlineStyle={this.props.underline}
-              labelStyle={{color: 'white', fontSize: '16px'}} >
-              {getLocations()}
-            </DropDownMenu>
-          </MuiThemeProvider>
         </label>
+        <MuiThemeProvider>
+          <DropDownMenu
+            styleName='states'
+            value={this.state.value}
+            onChange={this.handleChange}
+            underlineStyle={this.props.underline}
+            labelStyle={{color: 'white', fontSize: '16px'}} >
+            {getLocations()}
+          </DropDownMenu>
+        </MuiThemeProvider>
       </div>
     )
   }
 }
+
+LocationSelector.propTypes = propTypes
 
 export default CSSModules(LocationSelector, styles)

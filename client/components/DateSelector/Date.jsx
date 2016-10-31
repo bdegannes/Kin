@@ -1,10 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import DateMonth from '../Selectors/DateMonth'
 import DateDay from '../Selectors/DateDay'
 import DateYear from '../Selectors/DateYear'
 
 import CSSModules from 'react-css-modules'
 import styles from './DateSelectorStyle.scss'
+
+const propTypes = {
+  onChange: PropTypes.func.isRequired
+}
 
 const $accentMustard = '#FFC107'
 const styleMUI = {
@@ -46,8 +50,8 @@ class DateDropDown extends Component {
   }
 
   buildDate = () => {
-    const date = `${this.state.month} ${this.state.day} ${this.state.year}`
-    return date
+    const { month, day, year } = this.state
+    return `${month} ${day} ${year}`
   }
 
   render () {
@@ -60,5 +64,7 @@ class DateDropDown extends Component {
     )
   }
 }
+
+DateDropDown.propTypes = propTypes
 
 export default CSSModules(DateDropDown, styles)
