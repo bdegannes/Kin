@@ -56,8 +56,7 @@ class LoginPage extends Component {
             typeStyle={styleMUI.inputStyle}
             labelFocusStyle={styleMUI.focus}
             inputStyle={styleMUI.inputStyle}
-            onChange={this.handleChange}
-          />
+            onChange={this.handleChange} />
         </Form>
         <div styleName='button'>
           <Link to='/personal'>
@@ -66,8 +65,7 @@ class LoginPage extends Component {
               backgroundColor='#512DA8'
               labelColor='white'
               style={styleMUI.button}
-              onSubmit={this.handleSubmit}
-            />
+              onSubmit={this.handleSubmit} />
           </Link>
         </div>
         <About />

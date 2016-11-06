@@ -6,14 +6,21 @@ $bg-color-purple: #512DA8;
 $bg-color-green: #00796B;
 $bg-color-blue: #303F9F;
 $bg-color-turqouise: #0097A7;
+
 /* Logo */
 $logo-color-primary: #ffffff;
 $logo-color-secondary: #000000;
+
 /* Accent */
+$accent-color-white: rgba(225, 225, 225, 0.5);
 $accent-color-teal: #68EFAD;
 $accent-color-mustard: #FFC107;
 $accent-color-orange: #FF5722;
 $accent-color-red: #FF5252;
+
+/*Text*/
+$text-white: #ffffff;
+
 /*
  * Typography
  * ========================================================================== */
@@ -26,9 +33,11 @@ $font-size-h4: 18px;
 $font-size-h5: 14px;
 $font-size-h6: 12px;
 $font-size-label: 16px;
+
 /*
  * Mobile First Method
  * ===========================================================================*/
+
 /* Custom, iPhone Retina */
 $bp-phone-xs: 320px;
 /* Extra Small Devices, Phones */

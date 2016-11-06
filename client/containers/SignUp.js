@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as FormActions from '../actions/form.actions.js'
 
+import * as FormActions from '../actions/form.actions.js'
 import Form from '../components/Forms/Form'
 import Demographics from '../components/Forms/DemographicsForm'
 import Partial from '../components/Forms/FamilyForm'
+import MultiPartial from '../components/Forms/CollapseComponent'
 import BackButton from '../components/Buttons/BackButton'
 import ForwardButton from '../components/Buttons/ForwardButton'
 import SubmitButton from '../components/Buttons/Button.jsx'
@@ -110,24 +111,26 @@ class SignUp extends Component {
   }
 
   nextStep = () => {
-    let next = this.state.step
-    if (this.state.step !== this.state.formState.length) {
+    const { step, formState } = this.state
+    let next = step
+    if (step !== formState.length) {
       next += 1
     }
-    this.setState({step: next})
+    this.setState({ step: next })
   }
 
   previousStep = () => {
-    let prev = this.state.step
-    if (this.state.step > 0) {
+    const { step } = this.state
+    let prev = step
+    if (step > 0) {
       prev -= 1
     }
-    this.setState({step: prev})
+    this.setState({ step: prev })
   }
 
   formState = () => {
     const { formState, married, numOfChildren } = this.state
-    let nextformState = formState
+    let nextformState = [...formState]
 
     // personal info form partial
     nextformState.push(<Partial name='personal_info' heading='PLEASE ENTER YOUR INFO:' onChange={this.handlePersonalInfo} />)
@@ -139,18 +142,13 @@ class SignUp extends Component {
 
     // Add form for each child
     if (numOfChildren) {
-      const children = []
-      for (let i = 0; i < numOfChildren; i++) {
-        const name = `child_${i + 1}_info`
-        children.push(<Partial key={i} name={name} heading={`PLEASE ENTER YOUR ${name} INFO:`} onChange={this.handleChildrenInfo} />)
-      }
-      nextformState.push(children)
+      nextformState.push(<MultiPartial count={numOfChildren} type='children' onChange={this.handleChildrenInfo} />)
     }
 
     // Add parents form
-    const parents = [<Partial key='1' name='mother_info' heading='PLEASE ENTER YOUR MOTHER INFO:' onChange={this.handleParentInfo} />, <Partial key='2' name='father_info' heading='PLEASE ENTER YOUR FATHER INFO:' onChange={this.handleParentInfo} />]
+    // const parents = [<Partial key='1' name='mother_info' heading='PLEASE ENTER YOUR MOTHER INFO:' onChange={this.handleParentInfo} />, <Partial key='2' name='father_info' heading='PLEASE ENTER YOUR FATHER INFO:' onChange={this.handleParentInfo} />]
 
-    nextformState.push(parents)
+    nextformState.push(<MultiPartial count={2} type='parents' onChange={this.handleParentInfo} />)
 
     this.setState({
       formState: nextformState

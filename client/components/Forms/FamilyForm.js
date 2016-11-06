@@ -38,9 +38,9 @@ class FamilyForm extends Component {
   }
 
   render () {
-    const { heading } = this.props
+    const { heading, style } = this.props
     return (
-      <div styleName='familyform' >
+      <div styleName='familyform' style={style}>
         <h5> {heading} </h5>
         <InputField
           fieldStyle={styleMUI.fieldStyle}
