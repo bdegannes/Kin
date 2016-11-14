@@ -1,44 +1,36 @@
 import React, { Component } from 'react'
-import CSSModules from 'react-css-modules'
+import { connect } from 'react-redux'
+
 import Location from '../Selectors/States'
 import Toggle from '../Buttons/ToggleButton'
 import InputField from '../Field/InputField'
 import ForwardButton from '../Buttons/ForwardButton'
+
+import CSSModules from 'react-css-modules'
 import styles from './FormStyles.scss'
 
+@CSSModules(styles)
 class Demographics extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      locale: '',
-      married: false,
-      children: 0
-    }
-  }
-
-  handleLocation = (val) => {
-    this.setState({ locale: val })
+  handleLocation = (location) => {
+    this.props.onChange({ location })
   }
 
   handleToggle = (bool) => {
-    this.setState({ married: bool })
+    this.props.onChange({ married: bool })
   }
 
   handleInput = (target) => {
-    this.setState({ children: target.value })
-  }
-
-  handleClick = () => {
-    this.props.onChange(this.state)
+    this.props.onChange({ children: target.value })
   }
 
   render () {
+    const { personal } = this.props
     return (
       <div styleName='demographics'>
         <h5>PLEASE MAKE A SELECTION:</h5>
         <Location
           label='LOCATION:'
-          underline={{border: 'none'}}
+          underline={{ border: 'none' }}
           onChange={this.handleLocation} />
         <Toggle
           label='MARRIED:'
@@ -49,12 +41,13 @@ class Demographics extends Component {
           label='CHILDREN'
           type='number'
           hint='NUMBER'
+          value={personal.children || ''}
           fieldStyle={styleMUI.fieldStyle}
           typeStyle={styleMUI.inputStyle}
           onChange={this.handleInput} />
         <ForwardButton
           style={styleMUI.forward}
-          onClick={this.handleClick} />
+          onClick={this.props.onClick} />
       </div>
     )
   }
@@ -82,4 +75,5 @@ const styleMUI = {
   }
 }
 
-export default CSSModules(Demographics, styles)
+const mapStateToProps = ({ memberFormData }) => memberFormData
+export default connect(mapStateToProps, null)(Demographics)

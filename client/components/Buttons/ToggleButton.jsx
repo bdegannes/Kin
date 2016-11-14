@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Toggle from 'material-ui/Toggle'
 
@@ -10,20 +12,21 @@ const propTypes = {
 }
 
 class ToggleSwitch extends Component {
-  handleChange = (event, state) => {
-    this.props.onChange(state)
+  handleChange = (event, bool) => {
+    this.props.onChange(bool)
   }
 
   render () {
+    const { personal, label, position, toggleStyle } = this.props
     return (
       <div>
-        <p>{this.props.gender}</p>
         <MuiThemeProvider>
           <Toggle
-            label={this.props.label}
-            labelPosition={this.props.position}
+            defaultToggled={personal.married || false}
+            label={label}
+            labelPosition={position}
             labelStyle={styleMUI.label}
-            style={this.props.toggleStyle}
+            style={toggleStyle}
             onToggle={this.handleChange} />
         </MuiThemeProvider>
       </div>
@@ -40,4 +43,5 @@ const styleMUI = {
 
 ToggleSwitch.propTypes = propTypes
 
-export default ToggleSwitch
+const mapStateToProps = ({ memberFormData }) => memberFormData
+export default connect(mapStateToProps, null)(ToggleSwitch)

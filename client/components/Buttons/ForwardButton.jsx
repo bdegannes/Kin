@@ -4,7 +4,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import NavigationForward from 'material-ui/svg-icons/navigation/arrow-forward'
 
 const propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   style: PropTypes.object
 }
 

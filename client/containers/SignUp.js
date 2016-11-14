@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { uniqueId } from 'lodash'
 
 import * as FormActions from '../actions/form.actions.js'
+
 import Form from '../components/Forms/Form'
 import Demographics from '../components/Forms/DemographicsForm'
 import Partial from '../components/Forms/FamilyForm'
@@ -23,8 +25,6 @@ class SignUp extends Component {
   constructor () {
     super()
     this.state = {
-      married: false,
-      numOfChildren: 0,
       formStateSet: false,
       formState: [],
       step: 0
@@ -33,28 +33,20 @@ class SignUp extends Component {
 
   componentWillMount () {
     this.setState({
-      formState: [<Demographics onChange={this.handleDemoClickNext} />]
+      formState: [<Demographics onClick={this.handleDemoClickNext} onChange={this.handleDemoChange} />]
     })
   }
 
-  handleDemoClickNext = (content) => {
-    const demographics = {}
-    this.setState({
-      married: content.married,
-      numOfChildren: +content.children
-    }, function () {
-      demographics.married = content.married
-      demographics.location = content.locale
-      demographics.numOfChildren = this.state.numOfChildren
+  handleDemoChange = (info) => {
+    this.props.updateDemographics(info)
+  }
 
-      this.props.updateDemographics(demographics)
-
-      if (!this.state.formStateSet) {
-        this.formState()
-        this.setState({ formStateSet: true })
-      }
-      this.nextStep()
-    })
+  handleDemoClickNext = () => {
+    if (!this.state.formStateSet) {
+      this.formState()
+      this.setState({ formStateSet: true })
+    }
+    this.nextStep()
   }
 
   handlePersonalInfo = (name, label, value) => {
@@ -76,7 +68,7 @@ class SignUp extends Component {
 
   handleChildrenInfo = (name, label, value) => {
     const child = name.split('_')
-    const idx = +child[1] - 1
+    const idx = +child[1]
     if (child[0] === 'child') {
       if (!info.hasOwnProperty('children')) {
         info.children = {}
@@ -129,27 +121,27 @@ class SignUp extends Component {
   }
 
   formState = () => {
-    const { formState, married, numOfChildren } = this.state
+    const { personal } = this.props
+    const { formState } = this.state
     let nextformState = [...formState]
 
     // personal info form partial
     nextformState.push(<Partial name='personal_info' heading='PLEASE ENTER YOUR INFO:' onChange={this.handlePersonalInfo} />)
 
     // Add spouse form if married
-    if (married) {
-      nextformState.push(<Partial name='spouse_info' heading='PLEASE ENTER YOUR SPOUSE INFO:' onChange={this.handleSpouseInfo} />)
+    if (personal.married) {
+      nextformState.push(<Partial key={uniqueId('s_')} name='spouse_info' heading='PLEASE ENTER YOUR SPOUSE INFO:' onChange={this.handleSpouseInfo} />)
     }
 
     // Add form for each child
-    if (numOfChildren) {
-      nextformState.push(<MultiPartial count={numOfChildren} type='children' onChange={this.handleChildrenInfo} />)
+    if (personal.children) {
+      nextformState.push(<MultiPartial key={uniqueId('u_')} count={personal.children} type='children' onChange={this.handleChildrenInfo} />)
     }
 
     // Add parents form
-    // const parents = [<Partial key='1' name='mother_info' heading='PLEASE ENTER YOUR MOTHER INFO:' onChange={this.handleParentInfo} />, <Partial key='2' name='father_info' heading='PLEASE ENTER YOUR FATHER INFO:' onChange={this.handleParentInfo} />]
+    nextformState.push(<MultiPartial key={uniqueId('c_')} count={2} type='parents' onChange={this.handleParentInfo} />)
 
-    nextformState.push(<MultiPartial count={2} type='parents' onChange={this.handleParentInfo} />)
-
+    console.log(nextformState)
     this.setState({
       formState: nextformState
     })
@@ -161,7 +153,7 @@ class SignUp extends Component {
 
     if (step) {
       return (
-        <div>
+        <div style={{margin: '15px 0 0'}}>
           <BackButton
             onClick={this.previousStep} />
           {step < formLength && (
@@ -194,7 +186,7 @@ class SignUp extends Component {
   }
 }
 
-const mapStateToProps = ({memberFormData}) => memberFormData
+const mapStateToProps = ({ memberFormData }) => memberFormData
 const mapDispatchToProps = (dispatch) => bindActionCreators(FormActions, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

@@ -7,7 +7,6 @@ import CSSModules from 'react-css-modules'
 import styles from './Input.scss'
 
 const propTypes = {
-  value: PropTypes.string,
   hint: PropTypes.string,
   type: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -15,6 +14,7 @@ const propTypes = {
   labelFocusStyle: PropTypes.object,
   typeStyle: PropTypes.object,
   fieldStyle: PropTypes.object,
+  defaultValue: PropTypes.string,
   onChange: PropTypes.func.isRequired
 }
 
@@ -36,15 +36,15 @@ class InputField extends Component {
     }
   }
 
-  handleChange = (event, value) => {
+  handleChange = (event) => {
     this.props.onChange(event.target)
   }
 
-  isDirty = () => {
+  isDirty = (event) => {
     const { dirty } = this.state
-    const { value } = this.props
+    const { defaultValue } = this.props
     this.setState({dirty: true}, function () {
-      if (dirty && value === '') {
+      if (dirty && defaultValue === '') {
         this.setState({errorText: 'This field cannot be left empty!'})
       } else {
         this.setState({errorText: ''})
@@ -53,7 +53,7 @@ class InputField extends Component {
   }
 
   render () {
-    const { type, hint, lineStyle, labelFocusStyle, label, typeStyle, fieldStyle } = this.props
+    const { value, type, hint, lineStyle, labelFocusStyle, label, typeStyle, fieldStyle } = this.props
     const { errorText } = this.state
     return (
       <div styleName='inputField'>
@@ -62,12 +62,13 @@ class InputField extends Component {
             type={type}
             hintText={hint}
             name={label}
-            onChange={this.handleChange}
+            defaultValue={value}
             style={fieldStyle}
             inputStyle={typeStyle}
             floatingLabelText={label}
-            floatingLabelStyle={styleMUI.labelStyle}
+            onChange={this.handleChange}
             underlineFocusStyle={lineStyle}
+            floatingLabelStyle={styleMUI.labelStyle}
             floatingLabelFocusStyle={labelFocusStyle}
             onBlur={this.isDirty}
             errorText={errorText}

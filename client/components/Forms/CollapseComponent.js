@@ -34,10 +34,10 @@ class CollapseComponent extends Component {
     for (let i = 0; i < num; i++) {
       const openStatus = (i === openSectionIndex)
       if (type === 'children') {
-        name = `Child ${i + 1}`
+        name = `child ${i + 1}`
         heading = `PLEASE ENTER YOUR ${name} INFO:`
       } else if (type === 'parents') {
-        name = (i === 0) ? 'Mother' : 'Father'
+        name = (i === 0) ? 'mother' : 'father'
         heading = `PLEASE ENTER YOUR ${name} INFO:`
       }
       sections.push(<Section key={i} num={i} toggleOne={this.toggleOne} open={openStatus} name={name} heading={heading} onChange={this.props.handleChangeInput} />)

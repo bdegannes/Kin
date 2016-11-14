@@ -2,6 +2,11 @@ const path = require('path')
 const webpack = require('webpack')
 const autoprefixer = require('autoprefixer')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+
+const HOST = process.env.HOST || 'localhost'
+const PORT = process.env.PORT || 8080
+const PROXY = `http://${HOST}:${PORT}`
 
 module.exports = {
   entry: [
@@ -18,7 +23,17 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin('public/style.css', {
       allChunks: true
-    })
+    }),
+    new BrowserSyncPlugin({
+      host: HOST,
+      port: PORT,
+      proxy: PROXY
+    }, {
+     // prevent BrowserSync from reloading the page
+     // and let Webpack Dev Server take care of this
+      reload: false
+    }
+  )
   ],
   devtool: 'source-map',
   module: {
@@ -60,7 +75,7 @@ module.exports = {
     contentBase: './',
     hot: true,
     inline: true,
-    port: 3000,
+    port: PORT,
     host: 'localhost'
   }
 }

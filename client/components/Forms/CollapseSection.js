@@ -21,7 +21,7 @@ class CollapseSection extends Component {
 
   setHeight = () => {
     const { open } = this.props
-    let height = open ? '100%' : 0
+    let height = open ? '500px' : 0
     return height
   }
 
@@ -46,13 +46,13 @@ class CollapseSection extends Component {
   render () {
     const { num, name, heading } = this.props
     const title = name
-    const style = { height: this.setHeight() }
+    const style = { maxHeight: this.setHeight(), transition: 'max-height 1s ease-in-out' }
 
     return (
       <div styleName='card'>
         <h5 onClick={this.toggle} >
-          <span>{ title}</span>
-          { this.expand() }
+          <span>{title}</span>
+          {this.expand()}
         </h5>
         <Partial
           key={num}

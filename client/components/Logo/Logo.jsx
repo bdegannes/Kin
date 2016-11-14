@@ -11,9 +11,10 @@ let names = classNames.bind(styles)
 
 class KinLogo extends Component {
   render () {
+    const { location } = this.props
     let logo = names({
-      logoSm: this.props.location.pathname !== '/',
-      logoLg: this.props.location.pathname === '/'
+      logoSm: location.pathname !== '/',
+      logoLg: location.pathname === '/'
     })
     return (
       <div className={logo} >

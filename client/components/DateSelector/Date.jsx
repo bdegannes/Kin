@@ -1,13 +1,21 @@
 import React, { Component, PropTypes } from 'react'
-import DateMonth from '../Selectors/DateMonth'
+import { connect } from 'react-redux'
+
+import * as _u from '../../utils'
 import DateDay from '../Selectors/DateDay'
 import DateYear from '../Selectors/DateYear'
+import DateMonth from '../Selectors/DateMonth'
 
 import CSSModules from 'react-css-modules'
 import styles from './DateSelectorStyle.scss'
 
 const propTypes = {
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  name: PropTypes.string,
+  personal: PropTypes.object,
+  spouse: PropTypes.object,
+  children: PropTypes.object,
+  parents: PropTypes.object
 }
 
 const $accentMustard = '#FFC107'
@@ -23,6 +31,7 @@ const styleMUI = {
   }
 }
 // TODO: Styles for Birth component
+@CSSModules(styles)
 class DateDropDown extends Component {
   constructor (props) {
     super(props)
@@ -38,11 +47,13 @@ class DateDropDown extends Component {
       this.props.onChange(this.buildDate())
     })
   }
+
   setDay = (val) => {
     this.setState({day: val}, function () {
       this.props.onChange(this.buildDate())
     })
   }
+
   setYear = (val) => {
     this.setState({year: val}, function () {
       this.props.onChange(this.buildDate())
@@ -51,15 +62,18 @@ class DateDropDown extends Component {
 
   buildDate = () => {
     const { month, day, year } = this.state
-    return `${month} ${day} ${year}`
+    if (month && day && year) {
+      return new Date(`${month} ${day} ${year}`)
+    }
   }
 
   render () {
+    const date = _u.dateParser(this.props)
     return (
       <div styleName='dateSelector'>
-        <DateMonth dropDownStyle={styleMUI} onChange={this.setMonth} />
-        <DateDay dropDownStyle={styleMUI} onChange={this.setDay} />
-        <DateYear dropDownStyle={styleMUI} onChange={this.setYear} />
+        <DateMonth getMonth={date} dropDownStyle={styleMUI} onChange={this.setMonth} />
+        <DateDay getDay={date} dropDownStyle={styleMUI} onChange={this.setDay} />
+        <DateYear getYear={date} dropDownStyle={styleMUI} onChange={this.setYear} />
       </div>
     )
   }
@@ -67,4 +81,5 @@ class DateDropDown extends Component {
 
 DateDropDown.propTypes = propTypes
 
-export default CSSModules(DateDropDown, styles)
+const mapStateToProps = ({ memberFormData }) => memberFormData
+export default connect(mapStateToProps, null)(DateDropDown)

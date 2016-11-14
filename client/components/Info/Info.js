@@ -33,12 +33,14 @@ class Information extends Component {
 
   handleClick = (event) => {
     event.preventDefault()
-    this.setState({ infoBlockOpen: !this.state.infoBlockOpen })
-    this.move()
+    this.setState({ infoBlockOpen: !this.state.infoBlockOpen }, function () {
+      this.move()
+    })
   }
 
   move = () => {
-    if (!this.state.infoBlockOpen) {
+    const { infoBlockOpen } = this.state
+    if (infoBlockOpen) {
       this.switchAnim = this.addAnimation(animate)
     } else {
       this.switchAnim.reverse()
@@ -54,8 +56,7 @@ class Information extends Component {
           onClick={this.handleClick} />
         <div styleName='infoTextBlock'>
           <p styleName='infoText'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultrices ante fringilla
-            tortor laoreet, vel tincidunt arcu facilisis. Suspendisse vel nulla fermentum, imperdiet mi mattis, lacinia tortor.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultrices ante fringilla tortor laoreet, vel tincidunt arcu facilisis. Suspendisse vel nulla fermentum, imperdiet mi mattis, lacinia tortor.
           </p>
         </div>
       </div>
