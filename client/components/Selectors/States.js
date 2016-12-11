@@ -44,7 +44,6 @@ class LocationSelector extends Component {
 
   render () {
     const { label, underline, personal } = this.props
-    console.log(personal.location)
     return (
       <div className={styles.location}>
         <label className={styles.label}>

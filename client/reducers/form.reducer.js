@@ -32,10 +32,12 @@ export default (state = intialState, action) => {
       return {...state, ...{spouse: action.payload}}
 
     case c.FORM_UPDATE_CHILDREN:
-      return {...state, ...{children: action.payload}}
+      let child = {...state.children, ...action.payload}
+      return {...state, ...{children: child}}
 
     case c.FORM_UPDATE_PARENT:
-      return {...state, ...{parents: action.payload}}
+      let parent = {...state.parents, ...action.payload}
+      return {...state, ...{parents: parent}}
 
     default:
       return state

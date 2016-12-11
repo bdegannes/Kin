@@ -19,7 +19,7 @@ const styleMUI = {
   }
 }
 
-const info = {}
+let info = {}
 
 class SignUp extends Component {
   constructor () {
@@ -67,37 +67,24 @@ class SignUp extends Component {
   }
 
   handleChildrenInfo = (name, label, value) => {
-    const child = name.split('_')
+    const child = name.split(' ')
     const idx = +child[1]
-    if (child[0] === 'child') {
-      if (!info.hasOwnProperty('children')) {
-        info.children = {}
-      }
-      if (typeof info.children[idx] !== 'object') {
-        info.children[idx] = {}
-      }
 
-      info.children[idx][label] = value
+    if (!info.hasOwnProperty('children')) {
+      info = {...info, ...{children: {}}}
     }
+    info.children[idx] = {...info.children[idx], ...{[label]: value}}
     this.props.updateChildren(info.children)
   }
 
   handleParentInfo = (name, label, value) => {
-    if (name === 'mother_info' || name === 'father_info') {
-      if (!info.hasOwnProperty('parents')) {
-        info.parents = { mother: {}, father: {} }
-      }
-
-      switch (name) {
-        case 'mother_info':
-          info.parents.mother[label] = value
-          break
-        case 'father_info':
-          info.parents.father[label] = value
-          break
-        default:
-          break
-      }
+    if (!info.hasOwnProperty('parents')) {
+      info = {...info, ...{ parents: { mother: {}, father: {} } }}
+    }
+    if (name === 'mother') {
+      info.parents.mother = {...info.parents.mother, ...{[label]: value}}
+    } else if (name === 'father') {
+      info.parents.father = {...info.parents.father, ...{[label]: value}}
     }
     this.props.updateParent(info.parents)
   }
@@ -125,21 +112,24 @@ class SignUp extends Component {
     const { formState } = this.state
     let nextformState = [...formState]
 
+    console.log(personal)
     // personal info form partial
     nextformState.push(<Partial name='personal_info' heading='PLEASE ENTER YOUR INFO:' onChange={this.handlePersonalInfo} />)
 
     // Add spouse form if married
     if (personal.married) {
+      console.log('married')
       nextformState.push(<Partial key={uniqueId('s_')} name='spouse_info' heading='PLEASE ENTER YOUR SPOUSE INFO:' onChange={this.handleSpouseInfo} />)
     }
 
     // Add form for each child
     if (personal.children) {
-      nextformState.push(<MultiPartial key={uniqueId('u_')} count={personal.children} type='children' onChange={this.handleChildrenInfo} />)
+      console.log('children', personal.children)
+      nextformState.push(<MultiPartial key={uniqueId('s_')} count={personal.children} type='children' onChange={this.handleChildrenInfo} />)
     }
 
     // Add parents form
-    nextformState.push(<MultiPartial key={uniqueId('c_')} count={2} type='parents' onChange={this.handleParentInfo} />)
+    nextformState.push(<MultiPartial key={uniqueId('p_')} count={2} type='parents' onChange={this.handleParentInfo} />)
 
     console.log(nextformState)
     this.setState({

@@ -40,7 +40,7 @@ class CollapseComponent extends Component {
         name = (i === 0) ? 'mother' : 'father'
         heading = `PLEASE ENTER YOUR ${name} INFO:`
       }
-      sections.push(<Section key={i} num={i} toggleOne={this.toggleOne} open={openStatus} name={name} heading={heading} onChange={this.props.handleChangeInput} />)
+      sections.push(<Section key={i} num={i} toggleOne={this.toggleOne} open={openStatus} name={name} heading={heading} onChange={this.handleChangeInput} />)
     }
 
     return sections
