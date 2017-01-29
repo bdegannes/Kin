@@ -1,27 +1,59 @@
-var express = require('express')
-var path = require('path')
-// var bodyParser = require('body-parser')
-var morgan = require('morgan')
-// var request = require('request')
-var webpack = require('webpack')
-var config = require('../webpack.config.js')
-var WebpackDevServer = require('webpack-dev-server')
+'use strict'
 
-var app = express()
-var port = process.env.PORT || 3000
+const express = require('express')
+const path = require('path')
+const morgan = require('morgan')
+const bodyParser = require('body-parser')
+// const request = require('request')
 
-app.use(morgan('combined'))
+const webpack = require('webpack')
+const config = require('../webpack.config.js')
+const WebpackDevServer = require('webpack-dev-server')
 
-app.use(express.static(path.join(__dirname, '/../')))
+const mongoose = require('mongoose')
+mongoose.Promise = require('bluebird')
 
-new WebpackDevServer(webpack(config), {
-  hot: true,
-  historyApiFallback: true,
-  proxy: {
-    '*': 'http://localhost:3000'
-  }
-}).listen(3001, 'localhost', function (err) {
-  err ? console.log(err) : console.log('Listening at localhost:3001')
-})
+require('dotenv').config()
+const PORT = process.env.PORT || 3001
+const ENV = process.env.NODE_ENV || 'development'
 
-app.listen(port)
+let app = express()
+  .set('dbUrl', process.env.DEV_DB)
+  .use(morgan('combined'))
+  .use(express.static(path.join(__dirname, './public')))
+  .get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, '../index.html'))
+  })
+  .use(bodyParser())
+  .use(bodyParser.json())
+
+// DB connection
+function connect () {
+  return mongoose.connect(app.get('dbUrl')).connection
+}
+
+// connect to database then listen
+connect()
+  .on('error', console.error.bind(console, 'connection error:'))
+  .once('open', listen)
+
+// Models
+require('./api/Invite/invite.js')
+
+// Routes
+require('./api/Invite/routes.js')(app)
+
+
+function listen () {
+  new WebpackDevServer(webpack(config), {
+    hot: true,
+    historyApiFallback: true,
+    contentBase: './',
+    proxy: {
+      '*': 'http://localhost:3000'
+    }
+  }).listen(PORT, 'localhost', function (err) {
+    err ? console.log(err) : console.log(`Listening at localhost:${PORT}`)
+  })
+  app.listen(3000)
+}

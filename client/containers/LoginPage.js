@@ -39,7 +39,7 @@ class LoginPage extends Component {
   }
 
   handleSubmit = () => {
-    this.props.validate(this.state)
+    // this.props.validate(this.state)
   }
 
   render () {
